@@ -1,0 +1,67 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    border: 1px solid black;
+    width:500px;
+    height:600px;
+}
+
+.intro-div {
+    font-size: 96px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.lift-text {
+    animation-name: lift-text-move-right;
+    animation-duration: 3s;
+}
+
+.mate-text {
+    animation-name: mate-text-move-left;
+    animation-duration: 3s
+}
+
+.liftmate-text {
+    animation-name: lift-mate-text;
+    animation-duration: 3s;
+    color: rgb(14, 87, 92);
+}
+
+.intro-text {
+    color: white;
+    animation-name: fade-out;
+    animation-duration: 3s;
+}
+
+@keyframes lift-text-move-right {
+    0% {margin-right: 40px;}
+    50% {margin-right: 40px;}
+    100% {margin-right: 0;}
+}
+
+@keyframes mate-text-move-left {
+    0% {margin-left: 40px;}
+    50% {margin-left: 40px;}
+    100% {margin-left: 0;}
+}
+
+@keyframes fade-out {
+    33% {color: black;}
+    100% {color: white;}
+}
+
+@keyframes lift-mate-text {
+    0% {color: white;}
+    33% {color: black;}
+    50% {color: black;}
+    100% {color: rgb(14, 87, 92);}
+}

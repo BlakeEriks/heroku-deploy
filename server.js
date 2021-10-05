@@ -28,7 +28,7 @@ mongoose.connect(MONGODB_URI , { useNewUrlParser: true, useUnifiedTopology: true
 
 // Error / success
 db.on('error', (err) => console.log(err.message + ' is mongod not running?'));
-db.on('connected', () => console.log('mongod connected: ', MONGODB_URI));
+db.on('connected', () => console.log('mongod connected:'));
 db.on('disconnected', () => console.log('mongod disconnected'));
 
 //___________________
@@ -51,7 +51,7 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //___________________
 //localhost:3000
 app.get('/' , (req, res) => {
-  res.send('Hello World!');
+  res.render('index.ejs');
 });
 
 //___________________
