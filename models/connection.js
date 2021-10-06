@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 
 /* Mongo Connection Variables */
-const DB_URL = process.env.DATABASE_URL
+const DB_URL = process.env.MONGODB_URI
 const DB_CONFIG = {
     useNewUrlParser: true,
     useUnifiedTopology: true
