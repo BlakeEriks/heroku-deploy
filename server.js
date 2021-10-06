@@ -1,13 +1,12 @@
-//___________________
-//Dependencies
-//___________________
-const express = require('express');
+const express = require('express')
+const middleware = require('./utils/middleware')
 const methodOverride = require('method-override');
-const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const app = express();
+
+const app = express()
+middleware(app)
+
 const db = mongoose.connection;
-dotenv.config();
 //___________________
 //Port
 //___________________
