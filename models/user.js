@@ -1,10 +1,8 @@
 /* Dependencies */
 const mongoose = require('./connection')
-
-/* Extract schema & model */
 const { Schema, model } = mongoose;
 
-/* Define User Model */
+/* Define User Schema */
 const userSchema = new Schema({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true}
