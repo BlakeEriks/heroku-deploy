@@ -5,13 +5,11 @@ body {
 }
 
 main {
-    border: 1px solid black;
     width:500px;
     height:600px;
 }
 
 .intro-div {
-    font-size: 96px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -21,47 +19,77 @@ main {
 }
 
 .lift-text {
+    font-size: 32px;
     animation-name: lift-text-move-right;
-    animation-duration: 3s;
+    animation-duration: 5s;
 }
 
 .mate-text {
+    font-size: 32px;
     animation-name: mate-text-move-left;
-    animation-duration: 3s
+    animation-duration: 5s;
 }
 
 .liftmate-text {
+    font-size: 0px;
     animation-name: lift-mate-text;
-    animation-duration: 3s;
+    animation-duration: 5s;
     color: rgb(14, 87, 92);
+    position:absolute;
+    top:100px;
 }
 
 .intro-text {
+    font-size: 96px;
     color: white;
     animation-name: fade-out;
     animation-duration: 3s;
+    margin: 48px 0;
 }
 
 @keyframes lift-text-move-right {
-    0% {margin-right: 40px;}
-    50% {margin-right: 40px;}
-    100% {margin-right: 0;}
+    0% {margin-right: 15px;font-size: 96px;}
+    30% {margin-right: 15px;}
+    60% {margin-right: 0px;font-size: 96px;}
+    100% {font-size: 32px;}
 }
 
 @keyframes mate-text-move-left {
-    0% {margin-left: 40px;}
-    50% {margin-left: 40px;}
-    100% {margin-left: 0;}
+    0% {margin-left: 15px;font-size: 96px;}
+    30% {margin-left: 15px;}
+    60% {margin-left: 0px;font-size: 96px;}
+    100% {font-size: 32px;}
 }
 
 @keyframes fade-out {
+    0% {display:block}
     33% {color: black;}
     100% {color: white;}
 }
 
 @keyframes lift-mate-text {
-    0% {color: white;}
-    33% {color: black;}
-    50% {color: black;}
-    100% {color: rgb(14, 87, 92);}
+    0% {color: white;top:310px;}
+    20% {color: black;}
+    30% {color: black;}
+    60% {color: rgb(14, 87, 92);top:310px;}
+    100% {top:100px;}
+}
+
+.login-box {
+    margin-top: 80px;
+    background: darkcyan;
+    border-radius: 10px;
+    animation-name: fade-in;
+    animation-duration: 3s;
+    height: 400px;
+}
+
+.login-form {
+    display: none;
+    margin-top: 50px;
+}
+
+@keyframes fade-in {
+    0% {background: white;}
+    100% {background: darkcyan;}
 }
