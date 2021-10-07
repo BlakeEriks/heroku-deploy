@@ -20,19 +20,16 @@ main {
 
 .lift-text {
     font-size: 32px;
-    animation-name: lift-text-move-right;
     animation-duration: 5s;
 }
 
 .mate-text {
     font-size: 32px;
-    animation-name: mate-text-move-left;
     animation-duration: 5s;
 }
 
 .liftmate-text {
     font-size: 0px;
-    animation-name: lift-mate-text;
     animation-duration: 5s;
     color: rgb(14, 87, 92);
     position:absolute;
@@ -42,9 +39,22 @@ main {
 .intro-text {
     font-size: 96px;
     color: white;
-    animation-name: fade-out;
+    display: none;
     animation-duration: 3s;
-    margin: 48px 0;
+    margin: 56px 0;
+}
+
+.login-box {
+    margin-top: 80px;
+    background: darkcyan;
+    border-radius: 10px;
+    animation-name: fade-in;
+    animation-duration: 3s;
+    height: 400px;
+}
+
+.login-form {
+    margin-top: 50px;
 }
 
 @keyframes lift-text-move-right {
@@ -73,20 +83,6 @@ main {
     30% {color: black;}
     60% {color: rgb(14, 87, 92);top:310px;}
     100% {top:100px;}
-}
-
-.login-box {
-    margin-top: 80px;
-    background: darkcyan;
-    border-radius: 10px;
-    animation-name: fade-in;
-    animation-duration: 3s;
-    height: 400px;
-}
-
-.login-form {
-    display: none;
-    margin-top: 50px;
 }
 
 @keyframes fade-in {

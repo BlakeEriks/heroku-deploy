@@ -8,16 +8,17 @@ const animateIntro = () => {
     $liftMateText = $('.liftmate-text')
     $introText = $('.intro-text')
 
-    $liftText.removeClass('lift-text').hide()
-    $mateText.removeClass('mate-text').hide()
-    $liftMateText.removeClass('liftmate-text').hide()
-    $introText.removeClass('intro-text').hide()
+    $liftText.css('animation-name', '')
+    $mateText.css('animation-name', '')
+    $liftMateText.css('animation-name', '')
+    $introText.css('animation-name', '')
 
     setTimeout( () => {
-        $liftText.addClass('lift-text').show()
-        $mateText.addClass('mate-text').show()
-        $liftMateText.addClass('liftmate-text').show()
-        $introText.addClass('intro-text').show()
+        $liftText.css('animation-name', 'lift-text-move-right')
+        $mateText.css('animation-name', 'mate-text-move-left')
+        $liftMateText.css('animation-name', 'lift-mate-text')
+        $introText.css('animation-name', 'fade-out')
+
         setTimeout( () => {
             $('.intro-text').css('display', 'none')
             $('.intro-div').addClass('login-box')
@@ -25,7 +26,3 @@ const animateIntro = () => {
         }, 3000)
     }, 100)
 }
-
-$(document).ready( () => {
-    animateIntro()
-})
