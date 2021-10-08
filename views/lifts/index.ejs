@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('../partials/head') %>
+<script>
+    $(document).ready( () => {
+        populateCalendar();
+    })
+</script>
 <body>
+    <nav>
+        <div class="nav-content">
+            <span>
+                Lift-Mate
+            </span>
+            <span>
+                Hi User!
+            </span>
+        </div>
+    </nav>
     <main>
-        
+        <div class="lift-editor-panel">
+            <img src="/img/notepad.png" class="notepad">
+        </div>
+        <div class="lift-viewer-panel">
+            <div class="calendar">
+
+            </div>
+        </div>
     </main>
 </body>
 </html>

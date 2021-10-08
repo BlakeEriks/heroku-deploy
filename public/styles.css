@@ -1,11 +1,76 @@
-body {
+body, html {
+    margin: 0;
+    height: 100%;
 }
 
 main {
+    height: calc(100% - 50px);
     display: flex;
     justify-content: center;
-    max-width: 1400px;
+    max-width: 1100px;
     margin: 0 auto;
+}
+
+nav {
+    display: flex;
+    height: 50px;
+    padding: 0 -50%;
+    background: gray;
+    flex: 1;
+}
+
+.nav-content {
+    display: flex;
+    max-width: 1100px;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    margin: 0 auto;
+}
+
+.lift-editor-panel {
+    background: cornsilk;
+    width:40%;
+    display: flex;
+    align-items: center;
+}
+
+.lift-viewer-panel {
+    background: darkgrey;
+    width:60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    max-height: 600px;
+}
+
+.calendar-week {
+    display: flex;
+    flex: 1;
+}
+
+.notepad {
+    width: 90%;
+}
+
+.first-week {
+    justify-content: flex-end;
+}
+
+.calendar-day {
+    /* width: 20px; */
+    /* height: 20px; */
+    /* flex: 1; */
+    width: calc(100% / 7);
+    border: 1px solid rgb(102, 167, 245);
+    text-align: center;
 }
 
 .intro-div {
@@ -31,7 +96,7 @@ main {
     animation-duration: 5s;
     color: rgb(14, 87, 92);
     position:absolute;
-    top:12%;
+    top:22%;
 }
 
 .intro-text {
@@ -43,7 +108,6 @@ main {
 }
 
 .login-box {
-    margin-top: 80px;
     padding: 0 30px;
     background: darkcyan;
     border-radius: 10px;
@@ -51,6 +115,7 @@ main {
     animation-duration: 3s;
     height: 400px;
     width: 300px;
+    margin-top: 15%;
 }
 
 .login-form {
@@ -77,11 +142,11 @@ main {
 }
 
 @keyframes lift-mate-text {
-    0% {color: white;top:37%;}
+    0% {color: white;top:50%;}
     20% {color: black;}
     30% {color: black;}
-    60% {color: rgb(14, 87, 92);top:37%;}
-    100% {top:12%;}
+    60% {color: rgb(14, 87, 92);top:50%;}
+    100% {top:22%;}
 }
 
 @keyframes fade-in {

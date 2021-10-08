@@ -26,3 +26,25 @@ const animateIntro = () => {
         }, 3000)
     }, 100)
 }
+
+const populateCalendar = () => {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"]
+
+    $calendar = $('.calendar')
+    let today = new Date()
+    let date = new Date(today.getFullYear(), today.getMonth(), 1)
+    $calendar.append($('<div>').addClass('calendar-title').text(monthNames[today.getMonth()]))
+    let weekDiv = $('<div>').addClass('calendar-week').addClass('first-week');
+
+    while (date.getMonth() === today.getMonth()) {
+        if (date.getDay() === 0) {
+            console.log('adding week to cal')
+            if (date.getDate() !== 1) $calendar.append(weekDiv)
+            weekDiv = $('<div>').addClass('calendar-week')
+        }
+        let day = $('<div>').addClass('calendar-day').text(date.getDate());
+        weekDiv.append( day )
+        date.setDate(date.getDate() + 1);
+    }
+}
