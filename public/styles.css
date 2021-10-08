@@ -1,21 +1,19 @@
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 main {
-    width:500px;
-    height:600px;
+    display: flex;
+    justify-content: center;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .intro-div {
     text-align: center;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    flex-direction: column;
 }
 
 .lift-text {
@@ -33,7 +31,7 @@ main {
     animation-duration: 5s;
     color: rgb(14, 87, 92);
     position:absolute;
-    top:100px;
+    top:12%;
 }
 
 .intro-text {
@@ -46,15 +44,16 @@ main {
 
 .login-box {
     margin-top: 80px;
+    padding: 0 30px;
     background: darkcyan;
     border-radius: 10px;
     animation-name: fade-in;
     animation-duration: 3s;
     height: 400px;
+    width: 300px;
 }
 
 .login-form {
-    margin-top: 50px;
 }
 
 @keyframes lift-text-move-right {
@@ -78,11 +77,11 @@ main {
 }
 
 @keyframes lift-mate-text {
-    0% {color: white;top:310px;}
+    0% {color: white;top:37%;}
     20% {color: black;}
     30% {color: black;}
-    60% {color: rgb(14, 87, 92);top:310px;}
-    100% {top:100px;}
+    60% {color: rgb(14, 87, 92);top:37%;}
+    100% {top:12%;}
 }
 
 @keyframes fade-in {

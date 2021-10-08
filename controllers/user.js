@@ -30,7 +30,7 @@ userRouter.post('/login', (req,res) => {
             return
         }
         /* TODO save user session info*/
-        res.redirect('/lift/home')
+        res.redirect('/lifts')
     })
 })
 

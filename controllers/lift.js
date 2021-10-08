@@ -8,7 +8,7 @@ const liftRouter = express.Router()
 
 /* Define Routes */
 liftRouter.get('/', (req,res) => {
-    res.send('Hello Movement Home')
+    res.render('lifts/index')
 })
 
 /* Export */
