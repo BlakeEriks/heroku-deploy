@@ -34,7 +34,7 @@ const middleware = app => {
 
     /* Add routers to app */
     app.use('/', HomeRouter)
-    app.use('/user', UserRouter)
+    app.use('/', UserRouter)
     app.use('/lifts', LiftRouter)
     app.use('/movements', MovementRouter)
 }

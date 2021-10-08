@@ -7,8 +7,13 @@ const bcrypt = require('bcryptjs')
 const userRouter = express.Router()
 
 /* Define Routes */
-userRouter.get('/', (req,res) => {
-    res.send('Hello User Home')
+userRouter.get('/login', (req,res) => {
+    res.render('user/login')
+})
+
+/* Define Routes */
+userRouter.get('/signup', (req,res) => {
+    res.render('user/signup')
 })
 
 /* Export */
