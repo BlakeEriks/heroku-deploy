@@ -3,7 +3,6 @@
 <%- include('../partials/head') %>
 <script>
     $(document).ready( () => {
-        let date = new Date(<%- JSON.stringify(date) %>)
         populateCalendar();
     })
 </script>
@@ -22,12 +21,12 @@
         <div class="lift-editor-panel">
             <div class="notepad">
                 <h1 class="notepad-title">
-                    <%= date %>
+                    <%= moment(date).format('MMMM Do, YYYY') %>
                 </h1>
                  <% if (lift) { %>
                     Viewing Lift
                 <% } else { %>
-                    <form action="/lifts" method="POST">
+                    <form action="/lifts?date=<%= date.toLocaleDateString("en-US") %>" method="POST">
                         <button type="submit">Create Lift</button>
                     </form>
                 <% } %> 

@@ -3,6 +3,7 @@ const express = require('express')
 const Lift = require('../models/lift')
 const bcrypt = require('bcryptjs')
 const moment = require('moment')
+const { render } = require('ejs')
 
 /* Create Movement Router */
 const liftRouter = express.Router()
@@ -11,15 +12,16 @@ const liftRouter = express.Router()
 liftRouter.get('/', (req,res) => {
     let date = req.query.date ? new Date(req.query.date) : new Date();
     Lift.findOne( {date}, (err,lift) => {
-        console.log(lift)
-        console.log(date)
-        res.render('lifts/index', {lift: lift, date: moment(date).format('MMMM Do, YYYY')})
+        res.render('lifts/index', {lift, moment, date})
     })
 })
 
 liftRouter.post('/', (req,res) => {
-    let date = req.query.date ? req.query.date : new Date();
-
+    let date = new Date(req.query.date)
+    Lift.create( {date}, (err,lift) => {
+        // console.log(`/lifts?${date=date.toLocaleDateString("en-US")}`)
+        res.redirect(`/lifts?date=${date.toLocaleDateString("en-US")}`)
+    })
 })
 
 /* Export */
