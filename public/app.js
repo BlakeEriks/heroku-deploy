@@ -39,7 +39,6 @@ const populateCalendar = () => {
 
     while (date.getMonth() === today.getMonth()) {
         if (date.getDay() === 0) {
-            console.log('adding week to cal')
             if (date.getDate() !== 1) $calendar.append(weekDiv)
             weekDiv = $('<div>').addClass('calendar-week')
         }

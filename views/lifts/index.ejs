@@ -19,7 +19,18 @@
     </nav>
     <main>
         <div class="lift-editor-panel">
-            <img src="/img/notepad.png" class="notepad">
+            <div class="notepad">
+                <h1 class="notepad-title">
+                    October 9th, 2021
+                </h1>
+                 <% if (lift) { %>
+                    Viewing Lift
+                <% } else { %>
+                    <form action="/lifts" method="POST">
+                        <button type="submit">Create Lift</button>
+                    </form>
+                <% } %> 
+            </div>    
         </div>
         <div class="lift-viewer-panel">
             <div class="calendar">

@@ -8,7 +8,17 @@ const liftRouter = express.Router()
 
 /* Define Routes */
 liftRouter.get('/', (req,res) => {
-    res.render('lifts/index')
+    let date = req.query.date ? req.query.date : new Date();
+    Lift.findOne( {date}, (err,lift) => {
+        console.log(lift);
+        res.render('lifts/index', {lift})
+    })
+})
+
+liftRouter.post('/', (req,res) => {
+    let date = req.query.date ? req.query.date : new Date();
+
+    
 })
 
 /* Export */
