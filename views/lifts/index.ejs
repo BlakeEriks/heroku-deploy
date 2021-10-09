@@ -3,6 +3,7 @@
 <%- include('../partials/head') %>
 <script>
     $(document).ready( () => {
+        let date = new Date(<%- JSON.stringify(date) %>)
         populateCalendar();
     })
 </script>
@@ -21,7 +22,7 @@
         <div class="lift-editor-panel">
             <div class="notepad">
                 <h1 class="notepad-title">
-                    October 9th, 2021
+                    <%= date %>
                 </h1>
                  <% if (lift) { %>
                     Viewing Lift
