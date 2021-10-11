@@ -7,6 +7,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')
 
 /* Routers */
+const HomeRouter = require('../controllers/home')
 const UserRouter = require('../controllers/user')
 const LiftRouter = require('../controllers/lift')
 const MovementRouter = require('../controllers/movement')
@@ -33,6 +34,7 @@ const middleware = app => {
 
     /* Add routers to app */
     app.use('/', UserRouter)
+    app.use('/', HomeRouter)
     app.use('/lifts', LiftRouter)
     app.use('/movements', MovementRouter)
 }

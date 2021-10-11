@@ -1,13 +1,4 @@
-<a href="/lifts/<%= movement.lift_id %> ">
-    <%- include('../partials/notepadButton', {request: 'GET', queryUrl: `/movements?liftId=${movement.lift_id}`, label: "Back"}) %>
-    <!-- <button type="button"
-        hx-get="/movements?liftId=<%= movement.lift_id %>"
-        hx-trigger="click"
-        hx-target="div.notepad-content"
-        hx-swap="innerHTML"
-    >Back
-    </button> -->
-</a>
+<%- include('../partials/notepadButton', {request: 'GET', queryUrl: `/movements?liftId=${movement.lift_id}`, label: "Back"}) %>
 <h2>
     <%= movement.type %> 
 </h2>

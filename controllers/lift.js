@@ -22,28 +22,33 @@ liftRouter.get('/', (req,res) => {
     Lift.findOne( {date}, (err,lift) => {
         if (lift) {
             getMovementsForLift(lift, movements => {
-                res.render('lifts/index', {lift, movements, moment, date})
+                res.render('lifts/show', {lift, movements, moment, date})
             })
         }
         else {
-            res.render('lifts/index', {lift, moment, date})
+            res.render('lifts/show', {lift: undefined, movements: undefined, moment, date})
         }
     })
 })
+
+// liftRouter.get('/:date', (req,res) => {
+//     let date = req.params.date ? new Date(req.params.date) : new Date();
+//     Lift.findOne( {date}, (err,lift) => {
+//         if (lift) {
+//             getMovementsForLift(lift, movements => {
+//                 res.render('lifts/show', {lift, movements, moment, date})
+//             })
+//         }
+//         else {
+//             res.render('lifts/show', {moment, date})
+//         }
+//     })
+// })
 
 liftRouter.post('/', (req,res) => {
     let date = new Date(req.query.date)
     Lift.create( {date}, (err,lift) => {
-        // res.redirect(`/lifts?date=${date.toLocaleDateString("en-US")}`)
-        res.render('movements/index', {liftId: lift._id})
-    })
-})
-
-liftRouter.get('/:liftId', (req,res) => {
-    Lift.findById( req.params.liftId, (err,lift) => {
-        getMovementsForLift(lift, movements => {
-            res.render('lifts/index', {lift, movements, moment, date: lift.date})
-        })
+        res.render('movements/index', {movements: [], liftId: lift._id})
     })
 })
 

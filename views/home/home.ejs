@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<script>
+    $(document).ready( () => {
+        populateCalendar();
+    })
+</script>
+<body>
+    <nav>
+        <div class="nav-content">
+            <span>
+                Lift-Mate
+            </span>
+            <span>
+                Hi User!
+            </span>
+        </div>
+    </nav>
+    <main>
+        <div class="lift-editor-panel">
+            <div class="notepad">
+                <div
+                    hx-get="/lifts?date=<%=new Date().toLocaleDateString("en-US")%>"
+                    hx-trigger="load"
+                    hx-target="div.notepad"
+                    hx-swap="innerHTML"
+                >
+                </div>
+            </div>
+        </button>
+        </div>
+        <div class="lift-viewer-panel">
+            <div class="calendar">
+            </div>
+        </div>
+    </main>
+</body>
+</html>

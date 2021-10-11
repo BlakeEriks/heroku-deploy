@@ -7,10 +7,6 @@ const bcrypt = require('bcryptjs')
 const userRouter = express.Router()
 
 /* Define Routes */
-userRouter.get('/', (req,res) => {
-    res.render('home/index');
-})
-
 userRouter.get('/login', (req,res) => {
     res.render('user/login')
 })

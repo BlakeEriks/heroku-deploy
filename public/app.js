@@ -27,10 +27,6 @@ const animateIntro = () => {
     }, 100)
 }
 
-const formatDate = date => {
-
-}
-
 const populateCalendar = () => {
     const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"]
@@ -46,7 +42,16 @@ const populateCalendar = () => {
             if (date.getDate() !== 1) $calendar.append(weekDiv)
             weekDiv = $('<div>').addClass('calendar-week')
         }
-        let day = $('<a><div></div></a>').attr('href', `/lifts?date=${date.toLocaleDateString("en-US")}`).addClass('calendar-day').text(date.getDate());
+        let day = $('<div>').addClass('calendar-day').text(date.getDate())
+        // .on('click', () => {
+        //     $.ajax({
+        //         url: `/lifts?date=${date.toLocaleDateString("en-US")}`,
+        //         type: "GET",
+        //         success: data => {
+        //             $('div.notepad').html(data)
+        //         }
+        //     })
+        // })
         weekDiv.append(day)
         date.setDate(date.getDate() + 1);
     }
