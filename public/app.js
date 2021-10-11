@@ -51,3 +51,18 @@ const populateCalendar = () => {
         date.setDate(date.getDate() + 1);
     }
 }
+
+function setHandler() {
+    return {
+      fields: [],
+      addNewField() {
+          this.fields.push({
+              weight: '',
+              reps: ''
+           });
+        },
+        removeField(index) {
+           this.fields.splice(index, 1);
+         }
+      }
+ }

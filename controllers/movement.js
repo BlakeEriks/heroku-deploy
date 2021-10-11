@@ -11,5 +11,10 @@ movementRouter.get('/', (req,res) => {
     res.send('Hello Movement Home')
 })
 
+movementRouter.post('/', (req,res) => {
+    console.log(req.body)
+    res.redirect('/lifts')
+})
+
 /* Export */
 module.exports = movementRouter

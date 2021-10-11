@@ -19,12 +19,23 @@
     </nav>
     <main>
         <div class="lift-editor-panel">
-            <div class="notepad">
+            <div class="notepad" x-data="setHandler()">
                 <h1 class="notepad-title">
                     <%= moment(date).format('MMMM Do, YYYY') %>
                 </h1>
                  <% if (lift) { %>
-                    Viewing Lift
+                    <form action="/movements" method="POST">
+                        Type: <input type="text" name="type"></input>
+                        <template x-for="(field, index) in fields" :key="index">
+                            <div>
+                                Weight: <input x-model="field.weight" type="text" name="weight[]"></input> <br>
+                                Reps: <input x-model="field.reps" type="text" name="reps[]"></input> <br>
+                            </div>
+                        </template>
+                        <br>
+                        <button type="button" @click="addNewField()">+ Add Set</button> <br>
+                        <button type="submit">Add Movement</button>
+                    </form>
                 <% } else { %>
                     <form action="/lifts?date=<%= date.toLocaleDateString("en-US") %>" method="POST">
                         <button type="submit">Create Lift</button>

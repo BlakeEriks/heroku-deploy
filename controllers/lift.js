@@ -19,7 +19,6 @@ liftRouter.get('/', (req,res) => {
 liftRouter.post('/', (req,res) => {
     let date = new Date(req.query.date)
     Lift.create( {date}, (err,lift) => {
-        // console.log(`/lifts?${date=date.toLocaleDateString("en-US")}`)
         res.redirect(`/lifts?date=${date.toLocaleDateString("en-US")}`)
     })
 })
