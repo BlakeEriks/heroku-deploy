@@ -11,10 +11,6 @@ movementRouter.get('/:liftId/new', (req,res) => {
     res.render('movements/new', {liftId: req.params.liftId})
 })
 
-movementRouter.get('/', (req,res) => {
-    res.render('movements/new')
-})
-
 movementRouter.post('/:liftId', (req,res) => {
     let movement = {sets: []}
     movement.type = req.body.type
@@ -23,6 +19,18 @@ movementRouter.post('/:liftId', (req,res) => {
     movement.lift_id = req.params.liftId
     Movement.create(movement, (err, movement) => {
         res.redirect(`/lifts/${req.params.liftId}`)
+    })
+})
+
+movementRouter.get('/', (req,res) => {
+    Movement.find({lift_id: req.query.liftId}, (err, movements) => {
+        res.render('movements/index', {movements, liftId: req.query.liftId})
+    })
+})
+
+movementRouter.get('/:id', (req,res) => {
+    Movement.findById(req.params.id, (err,movement) => {
+        res.render('movements/show', {movement})
     })
 })
 

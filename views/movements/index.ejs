@@ -1,0 +1,22 @@
+<% for (movement of movements) { %>
+    <div class="movement-item">
+        <a 
+        hx-get="/movements/<%= movement._id %>"
+        hx-trigger="click"
+        hx-target="div.notepad-content"
+        hx-swap="innerHTML">
+        <%= movement.type %> - <%= movement.sets.length %> Sets 
+        </a>
+    <button type="button">Edit</button>
+        <form action="/movements/<%= movement._id %>?_method=DELETE">
+            <button type="button">Delete</button>
+        </form>
+    </div>
+<% } %>
+<button type="button"
+        hx-get="/movements/<%= liftId %>/new"
+        hx-trigger="click"
+        hx-target="div.notepad-content"
+        hx-swap="innerHTML"
+>Add Movement
+</button>

@@ -1,0 +1,17 @@
+<a href="/lifts/<%= movement.lift_id %> ">
+    <button type="button"
+        hx-get="/movements?liftId=<%= movement.lift_id %>"
+        hx-trigger="click"
+        hx-target="div.notepad-content"
+        hx-swap="innerHTML"
+    >Back
+    </button>
+</a>
+<h2>
+    <%= movement.type %> 
+</h2>
+<% for (set of movement.sets) { %>
+    <p>
+        <%= set.weight %>lbs x <%= set.reps %>
+    </p>
+<% } %>

@@ -9,11 +9,25 @@ const { render } = require('ejs')
 /* Create Movement Router */
 const liftRouter = express.Router()
 
+/* Help Functions */
+const getMovementsForLift = (lift, callback) => {
+    Movement.find( {lift_id: lift._id}, (err, movements) => {
+        callback(movements)
+    })
+}
+
 /* Define Routes */
 liftRouter.get('/', (req,res) => {
     let date = req.query.date ? new Date(req.query.date) : new Date();
     Lift.findOne( {date}, (err,lift) => {
-        res.render('lifts/index', {lift, moment, date})
+        if (lift) {
+            getMovementsForLift(lift, movements => {
+                res.render('lifts/index', {lift, movements, moment, date})
+            })
+        }
+        else {
+            res.render('lifts/index', {lift, moment, date})
+        }
     })
 })
 
@@ -26,7 +40,9 @@ liftRouter.post('/', (req,res) => {
 
 liftRouter.get('/:liftId', (req,res) => {
     Lift.findById( req.params.liftId, (err,lift) => {
-        res.render('lifts/index', {lift, moment, date: lift.date})
+        getMovementsForLift(lift, movements => {
+            res.render('lifts/index', {lift, movements, moment, date: lift.date})
+        })
     })
 })
 

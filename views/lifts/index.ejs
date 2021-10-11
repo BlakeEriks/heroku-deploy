@@ -25,12 +25,7 @@
                 </h1>
                 <div class="notepad-content">
                     <% if (lift) { %>
-                       <button type="button"
-                       hx-get="/movements/<%= lift._id %>/new"
-                       hx-trigger="click"
-                       hx-target="div.notepad-content"
-                       hx-swap="innerHTML"
-                       >Add Movement</button>
+                        <%- include('../movements/index', {movements, liftId: lift._id}) %> 
                    <% } else { %>
                        <form action="/lifts?date=<%= date.toLocaleDateString("en-US") %>" method="POST">
                            <button type="submit">Create Lift</button>
