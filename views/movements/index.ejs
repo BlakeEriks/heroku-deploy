@@ -7,10 +7,14 @@
         hx-swap="innerHTML">
         <%= movement.type %> - <%= movement.sets.length %> Sets 
         </a>
-    <button type="button">Edit</button>
-        <form action="/movements/<%= movement._id %>?_method=DELETE">
-            <button type="button">Delete</button>
-        </form>
+        <button 
+            type="button"
+            hx-post="/movements/<%= movement._id %>?_method=DELETE&liftId=<%= liftId %>"
+            hx-trigger="click"
+            hx-target="div.notepad-content"
+            hx-swap="innerHTML">
+            Delete
+        </button>
     </div>
 <% } %>
 <button type="button"

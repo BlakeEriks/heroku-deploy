@@ -22,6 +22,12 @@ movementRouter.post('/:liftId', (req,res) => {
     })
 })
 
+movementRouter.delete('/:id', (req,res) => {
+    Movement.findByIdAndDelete(req.params.id, (err, movement) => {
+        res.redirect(`/movements?liftId=${req.query.liftId}`)
+    })
+})
+
 movementRouter.get('/', (req,res) => {
     Movement.find({lift_id: req.query.liftId}, (err, movements) => {
         res.render('movements/index', {movements, liftId: req.query.liftId})
