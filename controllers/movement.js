@@ -7,19 +7,8 @@ const bcrypt = require('bcryptjs')
 const movementRouter = express.Router()
 
 /* Define Routes */
-movementRouter.get('/:liftId/new', (req,res) => {
-    res.render('movements/new', {liftId: req.params.liftId})
-})
-
-movementRouter.post('/:liftId', (req,res) => {
-    let movement = {sets: []}
-    movement.type = req.body.type
-    req.body.weight.forEach( (weight, index) => movement.sets.push({weight: weight, reps: req.body.reps[index]}))
-    movement.date = new Date(req.query.date)
-    movement.lift_id = req.params.liftId
-    Movement.create(movement, (err, movement) => {
-        res.redirect(`/lifts/${req.params.liftId}`)
-    })
+movementRouter.get('/new', (req,res) => {
+    res.render('movements/new', {liftId: req.query.liftId})
 })
 
 movementRouter.delete('/:id', (req,res) => {
@@ -31,6 +20,17 @@ movementRouter.delete('/:id', (req,res) => {
 movementRouter.get('/', (req,res) => {
     Movement.find({lift_id: req.query.liftId}, (err, movements) => {
         res.render('movements/index', {movements, liftId: req.query.liftId})
+    })
+})
+
+movementRouter.post('/', (req,res) => {
+    let movement = {sets: []}
+    movement.type = req.body.type
+    req.body.weight.forEach( (weight, index) => movement.sets.push({weight: weight, reps: req.body.reps[index]}))
+    movement.date = new Date(req.query.date)
+    movement.lift_id = req.query.liftId
+    Movement.create(movement, (err, movement) => {
+        res.redirect(`/movements?liftId=${req.query.liftId}`)
     })
 })
 

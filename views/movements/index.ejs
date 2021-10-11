@@ -7,20 +7,7 @@
         hx-swap="innerHTML">
         <%= movement.type %> - <%= movement.sets.length %> Sets 
         </a>
-        <button 
-            type="button"
-            hx-post="/movements/<%= movement._id %>?_method=DELETE&liftId=<%= liftId %>"
-            hx-trigger="click"
-            hx-target="div.notepad-content"
-            hx-swap="innerHTML">
-            Delete
-        </button>
+        <%- include('../partials/notepadButton', {request: "POST", queryUrl: `/movements/${movement._id}?_method=DELETE&liftId=${liftId}`, label: "Delete"}) %>
     </div>
 <% } %>
-<button type="button"
-        hx-get="/movements/<%= liftId %>/new"
-        hx-trigger="click"
-        hx-target="div.notepad-content"
-        hx-swap="innerHTML"
->Add Movement
-</button>
+<%- include('../partials/notepadButton', {request: "GET", queryUrl: `/movements/new?liftId=${liftId}`, label: "Add Movement"}) %>

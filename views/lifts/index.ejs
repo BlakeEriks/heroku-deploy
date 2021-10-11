@@ -27,10 +27,8 @@
                     <% if (lift) { %>
                         <%- include('../movements/index', {movements, liftId: lift._id}) %> 
                    <% } else { %>
-                       <form action="/lifts?date=<%= date.toLocaleDateString("en-US") %>" method="POST">
-                           <button type="submit">Create Lift</button>
-                       </form>
-                   <% } %> 
+                        <%- include('../partials/notepadButton', {request: "POST", queryUrl: `/lifts?date=${date.toLocaleDateString("en-US")}`, label: "Create Lift"}) %>
+                   <% } %>
                 </div>
             </div>    
         </div>

@@ -1,4 +1,4 @@
-<form action="/movements/<%= liftId %>" method="POST">
+<form>
     Type: <input type="text" name="type"></input>
     <template x-for="(field, index) in fields" :key="index">
         <div>
@@ -8,5 +8,10 @@
     </template>
     <br>
     <button type="button" @click="addNewField()">+ Add Set</button> <br>
-    <button type="submit">Add Movement</button>
+    <button type="submit"
+        hx-post="/movements?liftId=<%= liftId %>"
+        hx-trigger="click"
+        hx-target="div.notepad-content"
+        hx-swap="innerHTML">
+    >Add Movement</button>
 </form>

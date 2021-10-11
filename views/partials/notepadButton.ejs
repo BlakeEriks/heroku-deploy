@@ -1,0 +1,11 @@
+<button type="button"
+        <% if (request === "POST") { %> 
+            hx-post=<%= queryUrl %> 
+        <% } else { %>
+            hx-get=<%= queryUrl %>
+        <% } %> 
+        hx-trigger="click"
+        hx-target="div.notepad-content"
+        hx-swap="innerHTML"
+><%= label %>
+</button>
