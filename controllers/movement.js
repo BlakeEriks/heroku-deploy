@@ -7,13 +7,23 @@ const bcrypt = require('bcryptjs')
 const movementRouter = express.Router()
 
 /* Define Routes */
-movementRouter.get('/', (req,res) => {
-    res.send('Hello Movement Home')
+movementRouter.get('/:liftId/new', (req,res) => {
+    res.render('movements/new', {liftId: req.params.liftId})
 })
 
-movementRouter.post('/', (req,res) => {
-    console.log(req.body)
-    res.redirect('/lifts')
+movementRouter.get('/', (req,res) => {
+    res.render('movements/new')
+})
+
+movementRouter.post('/:liftId', (req,res) => {
+    let movement = {sets: []}
+    movement.type = req.body.type
+    req.body.weight.forEach( (weight, index) => movement.sets.push({weight: weight, reps: req.body.reps[index]}))
+    movement.date = new Date(req.query.date)
+    movement.lift_id = req.params.liftId
+    Movement.create(movement, (err, movement) => {
+        res.redirect(`/lifts/${req.params.liftId}`)
+    })
 })
 
 /* Export */

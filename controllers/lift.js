@@ -1,6 +1,7 @@
 /* Dependencies */
 const express = require('express')
 const Lift = require('../models/lift')
+const Movement = require('../models/movement')
 const bcrypt = require('bcryptjs')
 const moment = require('moment')
 const { render } = require('ejs')
@@ -20,6 +21,12 @@ liftRouter.post('/', (req,res) => {
     let date = new Date(req.query.date)
     Lift.create( {date}, (err,lift) => {
         res.redirect(`/lifts?date=${date.toLocaleDateString("en-US")}`)
+    })
+})
+
+liftRouter.get('/:liftId', (req,res) => {
+    Lift.findById( req.params.liftId, (err,lift) => {
+        res.render('lifts/index', {lift, moment, date: lift.date})
     })
 })
 
