@@ -42,19 +42,22 @@ const populateCalendar = () => {
             if (date.getDate() !== 1) $calendar.append(weekDiv)
             weekDiv = $('<div>').addClass('calendar-week')
         }
-        let day = $('<div>').addClass('calendar-day').text(date.getDate())
-        // .on('click', () => {
-        //     $.ajax({
-        //         url: `/lifts?date=${date.toLocaleDateString("en-US")}`,
-        //         type: "GET",
-        //         success: data => {
-        //             $('div.notepad').html(data)
-        //         }
-        //     })
-        // })
+        let day = $('<div>').addClass('calendar-day').attr('date', date.toLocaleDateString("en-US")).text(date.getDate())
         weekDiv.append(day)
         date.setDate(date.getDate() + 1);
     }
+
+    $('div.calendar-day').on('click', function() {
+        console.log($(this))
+        console.log($(this).attr('date'))
+            // $.ajax({
+            //     url: `/lifts?date=${date.toLocaleDateString("en-US")}`,
+            //     type: "GET",
+            //     success: data => {
+            //         $('div.notepad').html(data)
+            //     }
+            // })
+        })
 }
 
 function setHandler() {
