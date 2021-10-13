@@ -2,14 +2,16 @@
 const express = require('express')
 const Lift = require('../models/lift')
 const Movement = require('../models/movement')
-const bcrypt = require('bcryptjs')
+const loginCheck = require('../utils/loginCheck')
 const moment = require('moment')
-const { render } = require('ejs')
 
 let cache = {}
 
 /* Create Movement Router */
 const liftRouter = express.Router()
+
+/* Verify User is Logged In */
+liftRouter.use(loginCheck)
 
 /* Helper Functions */
 const getMovementsForLift = (lift, callback) => {

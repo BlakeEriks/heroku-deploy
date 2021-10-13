@@ -1,10 +1,13 @@
 /* Dependencies */
 const express = require('express')
 const Movement = require('../models/movement')
-const bcrypt = require('bcryptjs')
+const loginCheck = require('../utils/loginCheck')
 
 /* Create Movement Router */
 const movementRouter = express.Router()
+
+/* Verify User is Logged In */
+movementRouter.use(loginCheck)
 
 /* Define Routes */
 movementRouter.get('/new', (req,res) => {

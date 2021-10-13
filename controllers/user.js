@@ -7,14 +7,16 @@ const bcrypt = require('bcryptjs')
 const userRouter = express.Router()
 
 /* Define Routes */
+userRouter.get('/', (req,res) => {
+    res.render('user/intro');
+})
+
 userRouter.get('/login', (req,res) => {
     res.render('user/login')
 })
 
 userRouter.post('/login', (req,res) => {
-    console.log(req.body)
     const {username, password} = req.body
-
     User.findOne({username}, async (err,user) => {
         if (!user) {
             res.send('User does not exist')
@@ -25,8 +27,9 @@ userRouter.post('/login', (req,res) => {
             res.send('Wrong password')
             return
         }
-        /* TODO save user session info*/
-        res.redirect('/lifts')
+        req.session.loggedIn = true
+        req.session.username = username
+        res.redirect('/home')
     })
 })
 
@@ -35,7 +38,6 @@ userRouter.get('/signup', (req,res) => {
 })
 
 userRouter.post('/signup', async (req,res) => {
-    console.log(req.body)
     req.body.password = await bcrypt.hash(req.body.password, await bcrypt.genSalt(10))
     User.create(req.body, (err,user) => {
         res.redirect('/login')

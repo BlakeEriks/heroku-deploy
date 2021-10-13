@@ -1,13 +1,14 @@
 /* Dependencies */
 const express = require('express')
+const loginCheck = require('../utils/loginCheck')
 
+/* Create Home Router */
 const homeRouter = express.Router()
 
-/* Define Routes */
-homeRouter.get('/', (req,res) => {
-    res.render('home/intro');
-})
+/* Verify User is Logged In */
+homeRouter.use(loginCheck)
 
+/* Define Routes */
 homeRouter.get('/home', (req,res) => {
     res.render('home/home');
 })
