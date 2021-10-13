@@ -28,7 +28,6 @@ const animateIntro = () => {
 }
 
 function setHandler(sets) {
-    // console.log(sets)
     return {
       fields: sets ? sets : [],
       addNewField() {

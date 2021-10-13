@@ -8,6 +8,6 @@
     </template>
     <br>
     <button type="button" @click="addNewField()">+ Add Set</button> <br>
-    <%- include('../partials/notepadButton', {request: "GET", queryUrl: `/movements?liftId=${movement.lift_id}`, label: "Back"}) %> 
-    <%- include('../partials/notepadButton', {request: "PUT", queryUrl: `/movements/${movement._id}?_method=PUT`, label: "Update Movement"}) %> 
+    <%- include('../partials/notepadButton', {request: "GET", queryUrl: `/movements?liftId=${movement.lift_id}`, label: "Back", className: ''}) %> 
+    <%- include('../partials/notepadButton', {request: "PUT", queryUrl: `/movements/${movement._id}?_method=PUT`, label: "Update Movement", className: ''}) %> 
 </form>

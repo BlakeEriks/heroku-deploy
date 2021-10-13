@@ -1,12 +1,16 @@
 <form x-data="setHandler()">
-    Type: <input type="text" name="type"></input>
-    <template x-for="(field, index) in fields" :key="index">
-        <div>
-            Weight: <input x-model="field.weight" type="text" name="weight[]"></input> <br>
-            Reps: <input x-model="field.reps" type="text" name="reps[]"></input> <br>
-        </div>
-    </template>
-    <br>
-    <button type="button" @click="addNewField()">+ Add Set</button> <br>
-    <%- include('../partials/notepadButton', {request: "POST", queryUrl: `/movements?liftId=${liftId}`, label: "Add Movement"}) %>
+    <fieldset class="movement-info">
+        <legend class="highlight">Create a Movement</legend>
+        <div class="movement-label">Movement Type:</div>
+        <input type="text" name="type" class="movement-input"></input>
+        <div class="movement-label">Sets:</div>
+        <template x-for="(field, index) in fields" :key="index">
+            <div>
+                <input x-model="field.weight" type="text" name="weight[]" placeholder="0" class="set-input"></input> lbs
+                <input x-model="field.reps" type="text" name="reps[]" placeholder="0" class="set-input"> reps</input>
+            </div>
+        </template>
+        <button type="button" @click="addNewField()" class="pink-on-white">+ Add Set</button> <br>
+    </fieldset>
+    <%- include('../partials/notepadButton', {request: "POST", queryUrl: `/movements?liftId=${liftId}`, label: "Add Movement", className: "add-movement"}) %>
 </form>

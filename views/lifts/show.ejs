@@ -1,10 +1,10 @@
 <h1 class="notepad-title">
-    <%= moment(date).format('MMMM Do, YYYY') %>
+    <%= moment(date).format('MMM Do, YYYY') %>
 </h1>
 <div class="notepad-content">
     <% if (lift) { %>
         <%- include('../movements/index', {movements, liftId: lift._id}) %> 
    <% } else { %>
-        <%- include('../partials/notepadButton', {request: "POST", queryUrl: `/lifts?date=${date.toLocaleDateString("en-US")}`, label: "Create Lift"}) %>
+        <%- include('../partials/notepadButton', {request: "POST", queryUrl: `/lifts?date=${date.toLocaleDateString("en-US")}`, label: "Create Lift", className: ''}) %>
    <% } %>
 </div>

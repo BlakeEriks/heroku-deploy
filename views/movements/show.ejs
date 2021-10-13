@@ -1,5 +1,5 @@
-<%- include('../partials/notepadButton', {request: 'GET', queryUrl: `/movements?liftId=${movement.lift_id}`, label: "Back"}) %>
-<%- include('../partials/notepadButton', {request: 'GET', queryUrl: `/movements/${movement._id}/edit`, label: "Edit"}) %>
+<%- include('../partials/notepadButton', {request: 'GET', queryUrl: `/movements?liftId=${movement.lift_id}`, label: "Back", className: ''}) %>
+<%- include('../partials/notepadButton', {request: 'GET', queryUrl: `/movements/${movement._id}/edit`, label: "Edit", className: ''}) %>
 <h2>
     <%= movement.type %> 
 </h2>

@@ -9,5 +9,8 @@
         hx-trigger="click"
         hx-target="div.notepad-content"
         hx-swap="innerHTML"
+        <% if (className) { %>
+        class="<%= className %>"
+        <% } %> 
 ><%= label %>
 </button>

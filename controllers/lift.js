@@ -15,7 +15,7 @@ liftRouter.use(loginCheck)
 
 /* Helper Functions */
 const getMovementsForLift = (req, callback) => {
-    Movement.find( {username: req.username, lift_id: lift._id}, (err, movements) => {
+    Movement.find( {username: req.username, lift_id: req.lift._id}, (err, movements) => {
         callback(movements)
     })
 }
@@ -45,11 +45,11 @@ liftRouter.get('/', (req,res) => {
 })
 
 liftRouter.post('/', (req,res) => {
-    let lift = {
-        date: new Date(req.query.date),
-        username: req.session.username
-    }
-    Lift.create(lift, (err,lift) => {
+    
+    let date = new Date(req.query.date)
+    let username = req.session.username
+    
+    Lift.create({username, date}, (err,lift) => {
         cache[date] = undefined
         res.render('movements/index', {movements: [], liftId: lift._id})
     })
