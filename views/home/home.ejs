@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('../partials/head') %>
-<script>
-    $(document).ready( () => {
-        populateCalendar();
-    })
-</script>
 <body>
     <nav>
         <div class="nav-content">
@@ -32,6 +27,7 @@
         </div>
         <div class="lift-viewer-panel">
             <div class="calendar">
+                <%- include('../partials/calendar') %> 
             </div>
         </div>
     </main>

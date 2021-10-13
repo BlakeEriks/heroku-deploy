@@ -6,10 +6,12 @@ const bcrypt = require('bcryptjs')
 const moment = require('moment')
 const { render } = require('ejs')
 
+let cache = {}
+
 /* Create Movement Router */
 const liftRouter = express.Router()
 
-/* Help Functions */
+/* Helper Functions */
 const getMovementsForLift = (lift, callback) => {
     Movement.find( {lift_id: lift._id}, (err, movements) => {
         callback(movements)
@@ -19,35 +21,31 @@ const getMovementsForLift = (lift, callback) => {
 /* Define Routes */
 liftRouter.get('/', (req,res) => {
     let date = req.query.date ? new Date(req.query.date) : new Date();
-    Lift.findOne( {date}, (err,lift) => {
-        if (lift) {
-            getMovementsForLift(lift, movements => {
-                res.render('lifts/show', {lift, movements, moment, date})
-            })
-        }
-        else {
-            res.render('lifts/show', {lift: undefined, movements: undefined, moment, date})
-        }
-    })
+    if (!cache[date]) {
+        Lift.findOne( {date}, (err,lift) => {
+            if (lift) {
+                getMovementsForLift(lift, movements => {
+                    cache[date] = {lift, movements, date}
+                    res.setHeader('lift-id', lift._id);
+                    res.render('lifts/show', {...cache[date], moment})
+                })
+            }
+            else {
+                cache[date] = {lift: undefined, movements: undefined, date}
+                res.render('lifts/show', {...cache[date], moment})
+            }
+        })
+    }
+    else {
+        console.log('rendered from cache')
+        res.render('lifts/show', {...cache[date], moment})
+    }
 })
-
-// liftRouter.get('/:date', (req,res) => {
-//     let date = req.params.date ? new Date(req.params.date) : new Date();
-//     Lift.findOne( {date}, (err,lift) => {
-//         if (lift) {
-//             getMovementsForLift(lift, movements => {
-//                 res.render('lifts/show', {lift, movements, moment, date})
-//             })
-//         }
-//         else {
-//             res.render('lifts/show', {moment, date})
-//         }
-//     })
-// })
 
 liftRouter.post('/', (req,res) => {
     let date = new Date(req.query.date)
     Lift.create( {date}, (err,lift) => {
+        cache[date] = undefined
         res.render('movements/index', {movements: [], liftId: lift._id})
     })
 })

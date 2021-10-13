@@ -1,3 +1,5 @@
+const liftRouter = require("../controllers/lift");
+
 const animateIntro = () => {
     $('.intro-div').removeClass('login-box')
     $('.intro-text').css('display', 'block')
@@ -25,39 +27,6 @@ const animateIntro = () => {
             $('.login-form').fadeIn(500);
         }, 3000)
     }, 100)
-}
-
-const populateCalendar = () => {
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"]
-
-    $calendar = $('.calendar')
-    let today = new Date()
-    let date = new Date(today.getFullYear(), today.getMonth(), 1)
-    $calendar.append($('<div>').addClass('calendar-title').text(monthNames[today.getMonth()]))
-    let weekDiv = $('<div>').addClass('calendar-week').addClass('first-week');
-
-    while (date.getMonth() === today.getMonth()) {
-        if (date.getDay() === 0) {
-            if (date.getDate() !== 1) $calendar.append(weekDiv)
-            weekDiv = $('<div>').addClass('calendar-week')
-        }
-        let day = $('<div>').addClass('calendar-day').attr('date', date.toLocaleDateString("en-US")).text(date.getDate())
-        weekDiv.append(day)
-        date.setDate(date.getDate() + 1);
-    }
-
-    $('div.calendar-day').on('click', function() {
-        console.log($(this))
-        console.log($(this).attr('date'))
-            // $.ajax({
-            //     url: `/lifts?date=${date.toLocaleDateString("en-US")}`,
-            //     type: "GET",
-            //     success: data => {
-            //         $('div.notepad').html(data)
-            //     }
-            // })
-        })
 }
 
 function setHandler() {

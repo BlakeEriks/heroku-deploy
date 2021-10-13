@@ -1,0 +1,26 @@
+<%
+const monthNames = ["January", "February", "March", "April", "May", "June",
+"July", "August", "September", "October", "November", "December"]
+let today = new Date()
+let date = new Date(today.getFullYear(), today.getMonth(), 1)
+%>
+<div class='calendar-title'><%= monthNames[today.getMonth()] %> </div>
+<div class='calendar-week first-week'>
+
+<% while (date.getMonth() === today.getMonth()) { %>
+        <% if (date.getDay() === 0) { %>
+            </div>
+            <div class='calendar-week' />
+        <% } %>
+        <a
+        hx-get="/lifts?date=<%= date.toLocaleDateString("en-US") %>"
+        hx-trigger="click"
+        hx-target="div.notepad"
+        hx-swap="innerHTML"
+        class="calendar-day">
+        <div>
+        <%= date.getDate() %>
+        </div>
+        </a>
+        <% date.setDate(date.getDate() + 1); %>
+<% } %>
