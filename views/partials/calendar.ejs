@@ -26,7 +26,7 @@ let date = new Date(today.getFullYear(), today.getMonth(), 1)
         hx-trigger="click"
         hx-target="div.notepad"
         hx-swap="innerHTML"
-        class="calendar-day">
+        class="calendar-day <%= date.getDate() === today.getDate() ? 'selected' : ''  %>">
         <div>
         <%= date.getDate() %>
         </div>

@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('../partials/head') %>
+<script>
+    $(document).ready( () => {
+        $('.calendar-day').on('click', function() {
+            $('.calendar-day.selected').toggleClass('selected')
+            $(this).addClass('selected')
+        })
+    })
+</script>
 <body>
     <%- include('../partials/navbar') %> 
     <main>

@@ -163,7 +163,7 @@ button.add-movement {
 
 .calendar-day:hover {
     color: var(--accent);
-    background: gainsboro;
+    background: var(--light);
 }
 
 .calendar-heading {
@@ -178,6 +178,7 @@ button.add-movement {
 
 .selected {
     background: var(--light);
+    color: var(--accent);
 }
 
 .main-divider {
