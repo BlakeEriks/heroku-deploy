@@ -21,7 +21,8 @@ movementRouter.delete('/:id', (req,res) => {
 })
 
 movementRouter.get('/', (req,res) => {
-    Movement.find({lift_id: req.query.liftId}, (err, movements) => {
+    let username = req.session.username
+    Movement.find({username, lift_id: req.query.liftId}, (err, movements) => {
         res.render('movements/index', {movements, liftId: req.query.liftId})
     })
 })
@@ -29,6 +30,7 @@ movementRouter.get('/', (req,res) => {
 movementRouter.post('/', (req,res) => {
     let movement = getMovementFromBody(req.body)
     movement.lift_id = req.query.liftId
+    movement.username = req.session.username
     Movement.create(movement, (err, movement) => {
         res.redirect(`/movements?liftId=${req.query.liftId}`)
     })
@@ -38,7 +40,6 @@ movementRouter.put('/:id', (req,res) => {
     let movement = getMovementFromBody(req.body)
     Movement.findByIdAndUpdate(req.params.id, movement, (err,movement) => {
         res.redirect(303, `/movements/${req.params.id}`)
-        // res.redirect(303, `/movements?${movement.lift_id}`)
     })
 })
 

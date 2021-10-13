@@ -44,9 +44,26 @@ nav {
     margin: 0 auto;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
 .nav-logo {
     color: var(--light);
     font-family: 'BioRhyme', serif;
+    cursor: pointer;
+}
+
+.nav-greeting {
+    color: var(--light);
+}
+
+.nav-user {
+    background: var(--dark);
+    padding: 3px 6px;
+    border-radius: 5px;
+    color: var(--highlight);
 }
 
 .lift-editor-panel {
@@ -223,9 +240,14 @@ button {
     border: none;
     font-size: 16px;
     width: auto;
-    padding: 10px;
+    padding: 9px 10px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.pink-on-white {
+    color: var(--accent);
+    background: var(--light);
 }
 
 @keyframes lift-text-move-right {

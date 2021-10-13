@@ -30,7 +30,13 @@ const middleware = app => {
     /* Set view engine to ejs */
     app.set('view engine', 'ejs')
 
-    /* TODO add user sessions */
+    /* User session data */
+    app.use(session({
+        secret: process.env.SECRET,
+        store: MongoStore.create({mongoUrl: process.env.MONGODB_URI}),
+        saveUninitialized: true,
+        resave: false
+    }))
 
     /* Add routers to app */
     app.use('/', UserRouter)

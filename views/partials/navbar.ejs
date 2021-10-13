@@ -1,10 +1,20 @@
 <nav>
     <div class="nav-content">
         <span class="nav-logo">
-            Lift-Mate
+            <a href="/home">
+                Lift-Mate
+            </a>
         </span>
-        <span>
-            Hi User!
+        <span class="nav-right">
+            <span class="nav-greeting">
+                Hi
+                <span class="nav-user">
+                    <%= username %>!
+                </span>
+            </span>
+            <button>
+                <button class='pink-on-white'><a href="/logout">Log Out</a></button>
+            </button>
         </span>
     </div>
 </nav>

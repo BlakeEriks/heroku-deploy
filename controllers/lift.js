@@ -14,8 +14,8 @@ const liftRouter = express.Router()
 liftRouter.use(loginCheck)
 
 /* Helper Functions */
-const getMovementsForLift = (lift, callback) => {
-    Movement.find( {lift_id: lift._id}, (err, movements) => {
+const getMovementsForLift = (req, callback) => {
+    Movement.find( {username: req.username, lift_id: lift._id}, (err, movements) => {
         callback(movements)
     })
 }
@@ -23,10 +23,11 @@ const getMovementsForLift = (lift, callback) => {
 /* Define Routes */
 liftRouter.get('/', (req,res) => {
     let date = req.query.date ? new Date(req.query.date) : new Date();
+    let username = req.session.username
     if (!cache[date]) {
-        Lift.findOne( {date}, (err,lift) => {
+        Lift.findOne( {username, date}, (err,lift) => {
             if (lift) {
-                getMovementsForLift(lift, movements => {
+                getMovementsForLift({username, lift}, movements => {
                     cache[date] = {lift, movements, date}
                     res.setHeader('lift-id', lift._id);
                     res.render('lifts/show', {...cache[date], moment})
@@ -44,8 +45,11 @@ liftRouter.get('/', (req,res) => {
 })
 
 liftRouter.post('/', (req,res) => {
-    let date = new Date(req.query.date)
-    Lift.create( {date}, (err,lift) => {
+    let lift = {
+        date: new Date(req.query.date),
+        username: req.session.username
+    }
+    Lift.create(lift, (err,lift) => {
         cache[date] = undefined
         res.render('movements/index', {movements: [], liftId: lift._id})
     })

@@ -44,5 +44,11 @@ userRouter.post('/signup', async (req,res) => {
     })
 })
 
+userRouter.get('/logout', (req,res) => {
+    req.session.destroy( err => {
+        res.redirect('/login')
+    })
+})
+
 /* Export */
 module.exports = userRouter
