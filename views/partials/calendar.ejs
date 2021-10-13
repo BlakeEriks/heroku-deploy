@@ -5,6 +5,15 @@ let today = new Date()
 let date = new Date(today.getFullYear(), today.getMonth(), 1)
 %>
 <div class='calendar-title'><%= monthNames[today.getMonth()] %> </div>
+<div class='calendar-week' style="margin-bottom: 10px;">
+    <div class="calendar-heading">S</div>
+    <div class="calendar-heading">M</div>
+    <div class="calendar-heading">T</div>
+    <div class="calendar-heading">W</div>
+    <div class="calendar-heading">T</div>
+    <div class="calendar-heading">F</div>
+    <div class="calendar-heading">S</div>
+</div>
 <div class='calendar-week first-week'>
 
 <% while (date.getMonth() === today.getMonth()) { %>
