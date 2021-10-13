@@ -24,7 +24,7 @@ const animateIntro = () => {
             $('.intro-div').addClass('login-box')
             $('.login-content').fadeIn(500);
         }, 3000)
-    }, 100)
+    }, 10)
 }
 
 function setHandler(sets) {
