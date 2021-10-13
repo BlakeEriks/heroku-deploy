@@ -4,17 +4,7 @@
 <body>
     <main>
         <div class="intro-div login-box">
-            <div class="login-form">
-                <form action="/login" method="POST">
-                    <input type="text" name="username" placeholder="Username"/>
-                    <input type="password" name="password" placeholder="Password"/>
-                    <button type="submit">Log In</button>
-                </form>
-                OR
-                <a href="/signup">
-                    <button>Sign Up</button>
-                </a>
-            </div>
+            <%- include('../partials/loginForm') %> 
             <div class="liftmate-text">
                 <span class="lift-text">Lift</span>
                 <span class="mate-text">Mate</span>

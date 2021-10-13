@@ -1,7 +1,7 @@
 const animateIntro = () => {
     $('.intro-div').removeClass('login-box')
     $('.intro-text').css('display', 'block')
-    $('.login-form').hide();
+    $('.login-content').hide();
 
     $liftText = $('.lift-text')
     $mateText = $('.mate-text')
@@ -22,7 +22,7 @@ const animateIntro = () => {
         setTimeout( () => {
             $('.intro-text').css('display', 'none')
             $('.intro-div').addClass('login-box')
-            $('.login-form').fadeIn(500);
+            $('.login-content').fadeIn(500);
         }, 3000)
     }, 100)
 }
