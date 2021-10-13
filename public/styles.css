@@ -146,6 +146,12 @@ button.add-movement {
     border: 2px solid var(--light);
 }
 
+.movement-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
 .first-week {
     justify-content: flex-end;
 }
@@ -261,7 +267,8 @@ input {
     border: none;
     transition: 0.1s;
     box-shadow: 0 0 0 1pt var(--accent);
-    color: var(--light);
+    color: transparent;
+    text-shadow: 0 0 0 var(--light);
 }
 
 input::placeholder {
