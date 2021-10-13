@@ -7,7 +7,7 @@
         hx-swap="innerHTML">
         <%= movement.type %> - <%= movement.sets.length %> Sets 
         </a>
-        <%- include('../partials/notepadButton', {request: "POST", queryUrl: `/movements/${movement._id}?_method=DELETE&liftId=${liftId}`, label: "Delete", className: ''}) %>
+        <%- include('../partials/notepadButton', {request: "POST", queryUrl: `/movements/${movement._id}?_method=DELETE`, label: "Delete", className: ''}) %>
     </div>
 <% } %>
 <%- include('../partials/notepadButton', {request: "GET", queryUrl: `/movements/new?liftId=${liftId}`, label: "Add Movement", className: ''}) %>

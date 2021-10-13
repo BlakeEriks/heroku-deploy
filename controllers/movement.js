@@ -16,7 +16,7 @@ movementRouter.get('/new', (req,res) => {
 
 movementRouter.delete('/:id', (req,res) => {
     Movement.findByIdAndDelete(req.params.id, (err, movement) => {
-        res.redirect(`/movements?liftId=${req.query.liftId}`)
+        res.redirect(`/movements?liftId=${movement.lift_id}`)
     })
 })
 

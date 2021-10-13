@@ -3,7 +3,13 @@
 </h1>
 <div class="notepad-content">
     <% if (lift) { %>
-        <%- include('../movements/index', {movements, liftId: lift._id}) %> 
+        <div
+            hx-get="/movements?liftId=<%= lift._id %>"
+            hx-trigger="load"
+            hx-target="div.notepad-content"
+            hx-swap="innerHTML"
+        >
+        </div>
    <% } else { %>
         <%- include('../partials/notepadButton', {request: "POST", queryUrl: `/lifts?date=${date.toLocaleDateString("en-US")}`, label: "Create Lift", className: ''}) %>
    <% } %>
