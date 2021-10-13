@@ -31,17 +31,22 @@ nav {
     display: flex;
     height: 50px;
     padding: 0 -50%;
-    background: gray;
+    background: var(--accent);
     flex: 1;
 }
 
 .nav-content {
     display: flex;
-    max-width: 1100px;
+    max-width: 1050px;
     justify-content: space-between;
     align-items: center;
     flex: 1;
     margin: 0 auto;
+}
+
+.nav-logo {
+    color: var(--light);
+    font-family: 'BioRhyme', serif;
 }
 
 .lift-editor-panel {
@@ -146,7 +151,7 @@ nav {
     animation-duration: 3s;
     height: 400px;
     width: 300px;
-    margin-top: 15%;
+    margin-top: 110px;
 }
 
 .login-content {
