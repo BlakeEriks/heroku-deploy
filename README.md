@@ -38,6 +38,7 @@ Navigate to https://lift-mate.herokuapp.com/ and create an account to get starte
 * Tags for lifts corresponding to the corresponding movments
 * Edit form styling improvements
 * Error handling / redirecting on bad logins
+* Mobile + Tablet friendly design
 
 
 
