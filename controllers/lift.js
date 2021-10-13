@@ -37,7 +37,6 @@ liftRouter.get('/', (req,res) => {
         })
     }
     else {
-        console.log('rendered from cache')
         res.render('lifts/show', {...cache[date], moment})
     }
 })

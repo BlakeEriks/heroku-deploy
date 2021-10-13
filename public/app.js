@@ -1,5 +1,3 @@
-const liftRouter = require("../controllers/lift");
-
 const animateIntro = () => {
     $('.intro-div').removeClass('login-box')
     $('.intro-text').css('display', 'block')
@@ -29,9 +27,10 @@ const animateIntro = () => {
     }, 100)
 }
 
-function setHandler() {
+function setHandler(sets) {
+    // console.log(sets)
     return {
-      fields: [],
+      fields: sets ? sets : [],
       addNewField() {
           this.fields.push({
               weight: '',
@@ -42,4 +41,4 @@ function setHandler() {
            this.fields.splice(index, 1);
          }
       }
- }
+}

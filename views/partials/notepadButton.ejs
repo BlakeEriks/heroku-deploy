@@ -1,8 +1,10 @@
 <button type="button"
         <% if (request === "POST") { %> 
-            hx-post=<%= queryUrl %> 
-        <% } else { %>
-            hx-get=<%= queryUrl %>
+            hx-post= <%= queryUrl %> 
+        <% } else if (request === "GET") { %>
+            hx-get= <%= queryUrl %>
+        <% } else if (request === "PUT") { %> 
+            hx-put= <%= queryUrl %> 
         <% } %> 
         hx-trigger="click"
         hx-target="div.notepad-content"
