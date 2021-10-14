@@ -1,4 +1,5 @@
-<p align="center"><img width="500" src="./public/img/logo.png"/><b>Created by Blake Eriks</b></p>
+<p align="center"><img width="500" src="./public/img/logo.png"/></p>
+<p align="center"><b>Created by Blake Eriks</b></p>
 
 [LiftMate](https://lift-mate.herokuapp.com/) is a web app that let's you easily sign up and track your lifts.
 
