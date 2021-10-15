@@ -1,13 +1,17 @@
 <form x-data="setHandler()" x-init="fields=<%= JSON.stringify(movement.sets)%>">
-    Type: <input type="text" name="type" value="<%= movement.type %> "></input>
-    <template x-for="(field, index) in fields" :key="index">
-        <div>
-            Weight: <input x-model="field.weight" type="text" name="weight[]" value="field.weight" ></input> <br>
-            Reps: <input x-model="field.reps" type="text" name="reps[]" value="field.reps"></input> <br>
-        </div>
-    </template>
-    <br>
-    <button type="button" @click="addNewField()">+ Add Set</button> <br>
-    <%- include('../partials/notepadButton', {request: "GET", queryUrl: `/movements?liftId=${movement.lift_id}`, label: "Back", className: ''}) %> 
-    <%- include('../partials/notepadButton', {request: "PUT", queryUrl: `/movements/${movement._id}?_method=PUT`, label: "Update Movement", className: ''}) %> 
+    <fieldset class="movement-info">
+        <legend class="highlight">Edit Movement</legend>
+        <div class="movement-label">Movement Type:</div>
+        <input type="text" name="type" value="<%= movement.type %> " class="movement-input"></input>
+        <div class="movement-label">Sets:</div>
+        <template x-for="(field, index) in fields" :key="index">
+            <div>
+                <input x-model="field.weight" type="text" name="weight[]" value="field.weight" class="set-input"></input> lbs
+                <input x-model="field.reps" type="text" name="reps[]" value="field.reps" class="set-input"></input> reps
+            </div>
+        </template>
+        <button type="button" @click="addNewField()">+ Add Set</button> <br>
+        <%- include('../partials/notepadButton', {request: "GET", queryUrl: `/movements?liftId=${movement.lift_id}`, label: "Back", className: ''}) %> 
+        <%- include('../partials/notepadButton', {request: "PUT", queryUrl: `/movements/${movement._id}?_method=PUT`, label: "Update Movement", className: "add-movement"}) %>
+    </fieldset>
 </form>
