@@ -221,7 +221,7 @@ button.add-movement {
 }
 
 .intro-text {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'BioRhyme', serif;
     font-size: 96px;
     color: var(--dark);
     display: none;
@@ -349,10 +349,10 @@ button {
 }
 
 @keyframes lift-mate-text {
-    0% {color: var(--dark);top:46%;}
+    0% {color: var(--dark);top:48%;}
     20% {color: var(--light);}
     30% {color: var(--light);}
-    60% {color:var(--accent);top:46%;}
+    60% {color:var(--accent);top:48%;}
     100% {top:15%;}
 }
 
