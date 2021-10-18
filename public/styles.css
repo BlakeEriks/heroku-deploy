@@ -104,12 +104,24 @@ nav {
 .notepad {
     width: 85%;
     height: 60%;
-    color: var(--light);
+    background: var(--light);
+    border-radius: 10px;
+}
+
+@keyframes glow-text {
+    0% {text-shadow:1px 1px 10px var(--highlight),; color: var(--highlight); font-size: 56px;}
+    100% {text-shadow: 1px; color: var(--accent); font-size: 56px;}
 }
 
 .notepad-title {
     font-size: 56px;
-    color: var(--light);
+    color: var(--accent);
+    text-align: center;
+    border-top: 3px solid var(--dark);
+    border-bottom: 3px solid var(--dark);
+    padding: 8px 0;
+    animation-name: glow-text;
+    animation-duration: 1s;
 }
 
 .movement-info {
