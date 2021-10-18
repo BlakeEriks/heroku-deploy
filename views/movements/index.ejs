@@ -7,7 +7,21 @@
         hx-swap="innerHTML">
         <%= movement.type %> - <%= movement.sets.length %> Sets 
         </a>
-        <%- include('../partials/notepadButton', {request: "POST", queryUrl: `/movements/${movement._id}?_method=DELETE`, label: "Delete", className: ''}) %>
+        <button type="button"
+            hx-post="/movements/${movement._id}?_method=DELETE"
+            hx-trigger="click"
+            hx-target="div.notepad-content"
+            hx-swap="innerHTML"
+            class="movement-delete">
+            <i class="fas fa-times"></i>
+        </button>
     </div>
 <% } %>
+<button type="button"
+        hx-get="/movements/new?liftId=${liftId}"
+        hx-trigger="click"
+        hx-target="div.notepad-content"
+        hx-swap="innerHTML">
+<i class="fas fa-plus"></i>
+</button>
 <%- include('../partials/notepadButton', {request: "GET", queryUrl: `/movements/new?liftId=${liftId}`, label: "Add Movement", className: ''}) %>

@@ -1,6 +1,7 @@
 :root {
     --dark: #011627;
-    --light: #FDFFFC;
+    --light: #f4f4f4;
+    --light2: #d3d3d380;
     --highlight: #41EAD4;
     --accent: #D10054;
     background: var(--dark);
@@ -60,10 +61,7 @@ nav {
 }
 
 .nav-user {
-    /* background: var(--light); */
-    /* padding: 3px 6px; */
     border-radius: 5px;
-    /* color: var(--accent); */
     font-weight: 2;
 }
 
@@ -124,6 +122,12 @@ nav {
     animation-duration: 1s;
 }
 
+.notepad-content {
+    height: 63%;
+    border-bottom: 3px solid var(--dark);
+    transition: all 1s ease-in;
+}
+
 .movement-info {
     font-size: 24px;
     border-color: var(--light);
@@ -161,7 +165,30 @@ button.add-movement {
 .movement-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
+    cursor: pointer;
+    padding: 4px 10px;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+    color: var(--dark);
+}
+
+button.movement-delete {
+    background: none;
+    color: var(--light);
+    transition: 0.2s ease-in-out;
+}
+
+.movement-item:hover {
+    background: var(--light2);
+}
+
+.movement-item:hover > button.movement-delete {
+    color: var(--accent)
+}
+
+button.movement-delete:hover {
+    background: var(--accent);
+    color: var(--light);
 }
 
 .first-week {
