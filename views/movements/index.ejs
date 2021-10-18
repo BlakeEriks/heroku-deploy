@@ -8,7 +8,7 @@
         <%= movement.type %> - <%= movement.sets.length %> Sets 
         </a>
         <button type="button"
-            hx-post="/movements/${movement._id}?_method=DELETE"
+            hx-post="/movements/<%=movement._id%>?_method=DELETE"
             hx-trigger="click"
             hx-target="div.notepad-content"
             hx-swap="innerHTML"
