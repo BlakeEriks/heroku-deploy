@@ -1,13 +1,10 @@
 import './App.css';
+import LiftMate from './components/LiftMate';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>LiftMate</h1>
-      </header>
-    </div>
-  );
+    <LiftMate />
+  )
 }
 
 export default App;
