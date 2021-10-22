@@ -5,13 +5,11 @@ const Movement = require('../models/movement')
 const loginCheck = require('../utils/loginCheck')
 const moment = require('moment')
 
-let cache = {}
-
 /* Create Movement Router */
 const liftRouter = express.Router()
 
 /* Verify User is Logged In */
-liftRouter.use(loginCheck)
+// liftRouter.use(loginCheck)
 
 /* Helper Functions */
 const getMovementsForLift = (req, callback) => {
@@ -22,26 +20,42 @@ const getMovementsForLift = (req, callback) => {
 
 /* Define Routes */
 liftRouter.get('/', (req,res) => {
-    let date = req.query.date ? new Date(req.query.date) : new Date();
-    let username = req.session.username
-    if (!cache[date]) {
-        Lift.findOne( {username, date}, (err,lift) => {
-            if (lift) {
-                getMovementsForLift({username, lift}, movements => {
-                    cache[date] = {lift, movements, date}
-                    res.setHeader('lift-id', lift._id);
-                    res.render('lifts/show', {...cache[date], moment})
-                })
-            }
-            else {
-                cache[date] = {lift: undefined, movements: undefined, date}
-                res.render('lifts/show', {...cache[date], moment})
-            }
+    // let date = req.query.date ? new Date(req.query.date) : new Date();
+    if (req.query.month) {
+        console.log(req.query.month)
+        Lift.find({ 
+                    "$expr": { "$eq": [{ "$month": "$date" }, 10] } 
+                },
+                (err,lifts) => {
+                    res.send(lifts)
         })
     }
     else {
-        res.render('lifts/show', {...cache[date], moment})
+        console.log(req.query)
+        let date = req.query.date ? new Date(req.query.date) : new Date();
+        let username = req.session.username
+        // if (!cache[date]) {
+            // Lift.findOne( {username, date}, (err,lift) => {
+            Lift.find( req.query, (err,lift) => {
+                res.send(lift)
+            // if (lift) {
+            //         getMovementsForLift({username, lift}, movements => {
+            //             // cache[date] = {lift, movements, date}
+            //             // res.setHeader('lift-id', lift._id);
+            //             res.render('lifts/show', {...cache[date], moment})
+            //         })
+            //     }
+            //     else {
+            //         // cache[date] = {lift: undefined, movements: undefined, date}
+            //         res.render('lifts/show', {...cache[date], moment})
+            //     }
+            })
+        // }
+        // else {
+            // res.render('lifts/show', {...cache[date], moment})
+        // }
     }
+
 })
 
 liftRouter.post('/', (req,res) => {

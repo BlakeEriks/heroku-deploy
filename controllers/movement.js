@@ -7,7 +7,7 @@ const loginCheck = require('../utils/loginCheck')
 const movementRouter = express.Router()
 
 /* Verify User is Logged In */
-movementRouter.use(loginCheck)
+// movementRouter.use(loginCheck)
 
 /* Define Routes */
 movementRouter.get('/new', (req,res) => {

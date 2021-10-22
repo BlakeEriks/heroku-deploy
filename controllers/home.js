@@ -6,7 +6,7 @@ const loginCheck = require('../utils/loginCheck')
 const homeRouter = express.Router()
 
 /* Verify User is Logged In */
-homeRouter.use(loginCheck)
+// homeRouter.use(loginCheck)
 
 /* Define Routes */
 homeRouter.get('/home', (req,res) => {
