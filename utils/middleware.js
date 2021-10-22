@@ -5,6 +5,7 @@ const morgan = require('morgan')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const cors = require("cors")
 
 /* Routers */
 const HomeRouter = require('../controllers/home')
@@ -26,6 +27,11 @@ const middleware = app => {
 
     /* Serve files from public */
     app.use(express.static('public'))
+
+    /* Setup CORS */
+    app.use(cors({
+        origin: 'http://localhost:3000'
+    }));
 
     /* Set view engine to ejs */
     app.set('view engine', 'ejs')
