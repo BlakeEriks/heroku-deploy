@@ -7,7 +7,7 @@
   background: var(--dark);
 }
 
-body, html {
+body, html, #root {
   margin: 0;
   height: 100%;
   background: var(--dark);
@@ -87,9 +87,24 @@ nav {
   max-height: 600px;
 }
 
+.calendar-heading {
+  display: flex;
+  height: 12%;
+}
+
+.calendar-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .calendar-week {
   display: flex;
   flex: 1;
+}
+
+.calendar-week:first-child {
+  justify-content: flex-end;
 }
 
 .calendar-title {
@@ -225,7 +240,7 @@ button.movement-delete:hover {
   background: var(--light);
 }
 
-.calendar-heading {
+.calendar-heading-label {
   flex: 1;
   display: flex;
   justify-content: center;
