@@ -2,15 +2,14 @@ import Day from './Day'
 
 const Calendar = props => {
 
-    // const monthNames = ["January", "February", "March", "April", "May", "June",
-    // "July", "August", "September", "October", "November", "December"]
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
     const calendar = constructCalendar(props);
 
     return (
         <div className="lift-viewer-panel">
             <div className="calendar">
-                <div className='calendar-title'>October</div>
+                <div className='calendar-title'>{monthNames[props.selectedMonth]}</div>
 
                 <div className='calendar-heading' style={{marginBottom: '10px'}}>
                     <div className="calendar-heading-label">S</div>
@@ -22,11 +21,9 @@ const Calendar = props => {
                     <div className="calendar-heading-label">S</div>
                 </div>
 
-                {/* Calendar here */}
                 <div className='calendar-content'>
                 {calendar}
                 </div>
-                {/* <%- include('../partials/calendar') %>  */}
             </div>
         </div>
     )
@@ -37,6 +34,8 @@ const constructCalendar = ({lifts, selectedDate, setSelectedDate}) => {
     let today = new Date()
     let date = new Date(today.getFullYear(), today.getMonth(), 1)
     let week = []
+    
+
     while (date.getMonth() === today.getMonth()) {
         if (date.getDay() === 0) {
             weeks.push(

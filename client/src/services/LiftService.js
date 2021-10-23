@@ -7,9 +7,7 @@ const LiftService = {
     },
 
     getAllForMonth: month => {
-        let query = `/lifts?${month}`
-        console.log(query)
-        return http.get(`/lifts?${month}`)
+        return http.get(`/lifts?month=${month+1}`)
     },
 
     getByDate: date => {

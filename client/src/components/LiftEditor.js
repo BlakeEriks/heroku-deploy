@@ -1,4 +1,20 @@
-const LiftEditor = () => {
+import React, {useEffect, useState} from 'react'
+import MovementService from '../services/MovementService'
+
+const LiftEditor = ({lift}) => {
+
+    const [movements, setMovements] = useState([])
+
+    useEffect( () => {
+        const updateMovements = () => {
+            MovementService.getAllForLift(lift._id).then(res => {
+                setMovements(res.data)
+            })
+        }
+        // console.log(lift, lift === true)
+        if (lift._id) updateMovements()
+    }, [lift])
+
     return (
         <div className="lift-editor-panel">
             <div className="notepad">
@@ -8,7 +24,7 @@ const LiftEditor = () => {
                 <div className="notepad-content">
                     {/* if lift */}
                     {/* Movement Index */}
-
+                    {movements}
                     {/* else */}
                     <button>    
                     Button Click For Create Lift

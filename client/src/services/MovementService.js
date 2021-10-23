@@ -6,6 +6,10 @@ const MovementService = {
         return http.get('/movements')
     },
 
+    getAllForLift: liftId => {
+        return http.get(`/movements?liftId=${liftId}`)
+    },
+
     get: id => {
         return http.get(`/movements/${id}`)
     },

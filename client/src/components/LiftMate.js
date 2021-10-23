@@ -12,8 +12,8 @@ const LiftMate = () => {
     const [liftsThisMonth, setLiftsThisMonth] = useState([])
 
     useEffect( () => {
-        LiftService.getByDate(selectedDate).then( lift => {
-            setLift(lift)
+        LiftService.getByDate(selectedDate).then( res => {
+            setLift(res.data)
         })
     }, [selectedDate])
 
@@ -27,9 +27,9 @@ const LiftMate = () => {
         <>
         <Navbar />
         <main>
-            <LiftEditor />
+            <LiftEditor lift={lift}/>
             <div className="main-divider"></div>
-            <Calendar lifts={liftsThisMonth} setSelectedDate={setSelectedDate} selectedDate={selectedDate}/>
+            <Calendar lifts={liftsThisMonth} setSelectedDate={setSelectedDate} selectedDate={selectedDate} selectedMonth={selectedMonth}/>
         </main>
         </>
     )
