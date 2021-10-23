@@ -22,21 +22,15 @@ const getMovementsForLift = (req, callback) => {
 liftRouter.get('/', (req,res) => {
     // let date = req.query.date ? new Date(req.query.date) : new Date();
     if (req.query.month) {
-        console.log(req.query.month)
-        Lift.find({ 
-                    "$expr": { "$eq": [{ "$month": "$date" }, 10] } 
-                },
-                (err,lifts) => {
-                    res.send(lifts)
-        })
+        Lift.find({"$expr": { "$eq": [{ "$month": "$date" }, Number(req.query.month)] }},
+                (err,lifts) => res.send(lifts))
     }
     else {
-        console.log(req.query)
         let date = req.query.date ? new Date(req.query.date) : new Date();
         let username = req.session.username
         // if (!cache[date]) {
             // Lift.findOne( {username, date}, (err,lift) => {
-            Lift.find( req.query, (err,lift) => {
+            Lift.findOne( req.query, (err,lift) => {
                 res.send(lift)
             // if (lift) {
             //         getMovementsForLift({username, lift}, movements => {
