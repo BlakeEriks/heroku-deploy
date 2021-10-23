@@ -5,23 +5,20 @@ import LiftEditor from './LiftEditor'
 import Calendar from './Calendar'
 
 const LiftMate = () => {
-    //eslint-disable-next-line
+
     const [selectedDate, setSelectedDate] = useState(new Date())
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth())
-    //eslint-disable-next-line
     const [lift, setLift] = useState({})
     const [liftsThisMonth, setLiftsThisMonth] = useState([])
 
     useEffect( () => {
         LiftService.getByDate(selectedDate).then( lift => {
-            console.log(lift)
             setLift(lift)
         })
     }, [selectedDate])
 
     useEffect( () => {
         LiftService.getAllForMonth(selectedMonth).then( lifts => {
-            console.log(lifts.data)
             setLiftsThisMonth(lifts.data)
         })
     }, [selectedMonth])
@@ -32,7 +29,7 @@ const LiftMate = () => {
         <main>
             <LiftEditor />
             <div className="main-divider"></div>
-            <Calendar lifts={liftsThisMonth}/>
+            <Calendar lifts={liftsThisMonth} setSelectedDate={setSelectedDate} selectedDate={selectedDate}/>
         </main>
         </>
     )

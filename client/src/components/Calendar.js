@@ -1,9 +1,11 @@
-const Calendar = ({lifts}) => {
+import Day from './Day'
+
+const Calendar = props => {
 
     // const monthNames = ["January", "February", "March", "April", "May", "June",
     // "July", "August", "September", "October", "November", "December"]
 
-    const calendar = constructCalendar(lifts);
+    const calendar = constructCalendar(props);
 
     return (
         <div className="lift-viewer-panel">
@@ -30,14 +32,12 @@ const Calendar = ({lifts}) => {
     )
 }
 
-const constructCalendar = lifts => {
+const constructCalendar = ({lifts, selectedDate, setSelectedDate}) => {
     let weeks = []
     let today = new Date()
     let date = new Date(today.getFullYear(), today.getMonth(), 1)
     let week = []
-    
     while (date.getMonth() === today.getMonth()) {
-
         if (date.getDay() === 0) {
             weeks.push(
                 <div className='calendar-week' key={date.getDate()}>
@@ -47,11 +47,8 @@ const constructCalendar = lifts => {
             week = []
         }
         week.push(
-            <a href='/' className='calendar-day' key={date.getDate()}>
-                <div>
-                    {date.getDate()}{ (lifts.some(lift => new Date(lift.date).getDate() === date.getDate())) ? '*' : ''}
-                </div>
-            </a>
+            <Day key={date.getDate()} date={new Date(date.getTime())} selected={selectedDate.getDate() === date.getDate()} setSelectedDate={setSelectedDate} 
+                hasLift={lifts.some(lift => new Date(lift.date).getDate() === date.getDate())}/>
         )
         date.setDate(date.getDate() + 1);
     }
