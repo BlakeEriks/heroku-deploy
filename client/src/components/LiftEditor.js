@@ -1,14 +1,13 @@
 const LiftEditor = () => {
     return (
-        <div class="lift-editor-panel">
-            <div class="notepad">
-                <h1 class="notepad-title">
+        <div className="lift-editor-panel">
+            <div className="notepad">
+                <h1 className="notepad-title">
                     Notepad Title
                 </h1>
-                <div class="notepad-content">
+                <div className="notepad-content">
                     {/* if lift */}
                     {/* Movement Index */}
-                    
 
                     {/* else */}
                     <button>    

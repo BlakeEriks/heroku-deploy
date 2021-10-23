@@ -6,6 +6,12 @@ const LiftService = {
         return http.get('/lifts')
     },
 
+    getAllForMonth: month => {
+        let query = `/lifts?${month}`
+        console.log(query)
+        return http.get(`/lifts?${month}`)
+    },
+
     getByDate: date => {
         return http.get(`/lifts?date=${date.toLocaleDateString("en-US")}`)
     },
