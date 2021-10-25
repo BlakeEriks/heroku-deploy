@@ -23,7 +23,7 @@ movementRouter.delete('/:id', (req,res) => {
 movementRouter.get('/', (req,res) => {
     // let username = req.session.username
     Movement.find({lift_id: req.query.liftId}, (err, movements) => {
-        res.render('movements/index', {movements, liftId: req.query.liftId})
+        res.send(movements)
     })
 })
 
