@@ -24,7 +24,7 @@ const LiftEditor = ({lift}) => {
                 <div className="notepad-content">
                     {/* if lift */}
                     {/* Movement Index */}
-                    {movements}
+                    {movements.map( (movement, index) => <div key={index}>{movement.type}</div>)}
                     {/* else */}
                     <button>    
                     Button Click For Create Lift
