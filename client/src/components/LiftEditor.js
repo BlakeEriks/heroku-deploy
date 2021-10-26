@@ -24,12 +24,22 @@ const LiftEditor = ({lift}) => {
                 <div className="notepad-content">
                     {/* if lift */}
                     {/* Movement Index */}
-                    {movements.map( (movement, index) => <div key={index}>{movement.type}</div>)}
-                    {/* else */}
+                    {lift ?
+                    movements.map( (movement, index) => 
+                        <div className="movement-item" key={index}>
+                            <a>
+                            {movement.type} - {movement.sets.length} Sets 
+                            </a>
+                            <button type="button" class="movement-delete">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        )
+                    :
                     <button>    
-                    Button Click For Create Lift
+                        Button Click For Create Lift
                     </button>
-                    {/* <%- include('../partials/notepadButton', {request: "POST", queryUrl: `/lifts?date=${date.toLocaleDateString("en-US")}`, label: "Create Lift", className: ''}) %> */}
+                    /* <%- include('../partials/notepadButton', {request: "POST", queryUrl: `/lifts?date=${date.toLocaleDateString("en-US")}`, label: "Create Lift", className: ''}) %> */}
                 </div>
             </div>
         </div>
