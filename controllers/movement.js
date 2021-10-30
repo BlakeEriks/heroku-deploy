@@ -28,11 +28,22 @@ movementRouter.get('/', (req,res) => {
 })
 
 movementRouter.post('/', (req,res) => {
-    let movement = getMovementFromBody(req.body)
-    movement.lift_id = req.query.liftId
-    movement.username = req.session.username
-    Movement.create(movement, (err, movement) => {
-        res.redirect(`/movements?liftId=${req.query.liftId}`)
+    // let movement = getMovementFromBody(req.body)
+    // console.log(req.body)
+    console.log(req.body)
+    // console.log(req.query)
+    // movement.lift_id = req.query.liftId
+    // movement.username = req.session.username
+    Movement.create(req.body)
+    .then( movement => {
+        res.send(movement)
+    })
+    .catch( err => {
+        console.log(err)
+        res.status(500).send({
+            message:
+              err.message || "Some error occurred while creating the Movement."
+          });
     })
 })
 
