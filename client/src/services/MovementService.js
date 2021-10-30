@@ -14,12 +14,12 @@ const MovementService = {
         return http.get(`/movements/${id}`)
     },
 
-    create: data => {
-        return http.post(`/movements`, data)
+    create: movement => {
+        return http.post(`/movements`, movement)
     },
 
-    update: (id, data) => {
-        return http.put(`/movements/${id}`, data)
+    update: (id, movement) => {
+        return http.put(`/movements/${id}`, movement)
     },
 
     remove: id => {

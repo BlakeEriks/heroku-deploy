@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import MovementService from '../services/MovementService'
 import moment from 'moment'
 import MovementCreate from './MovementCreate'
+import Movement from './Movement'
 
 const LiftEditor = ({lift}) => {
 
@@ -12,19 +13,23 @@ const LiftEditor = ({lift}) => {
         const updateMovements = () => {
             MovementService.getAllForLift(lift._id).then(res => {
                 setMovements(res.data.map( (movement, index) => 
-                <div className="movement-item" key={index}>
-                    <a>
-                    {movement.type} - {movement.sets.length} Sets 
-                    </a>
-                    <button type="button" className="movement-delete">
-                        <i className="fas fa-times"></i>
-                    </button>
-                </div>
+                    <Movement key={movement._id} {...movement}/>
                 ))
             })
         }
         if (lift._id) updateMovements()
     }, [lift])
+
+    const createMovement = movement => {
+        console.log(lift)
+        movement.lift_id = lift._id
+        console.log(movement)
+        MovementService.create(movement).then( res => {
+            console.log(res)
+            setMovements([...movements, <Movement key={res.data._id} {...res.data} />])
+            setMode('show')
+        })
+    }
 
     return (
         <div className="lift-editor-panel">
@@ -42,7 +47,7 @@ const LiftEditor = ({lift}) => {
                     <button onClick={() => setMode('create')}>Add Movement</button>
                     </>
                     :
-                    <MovementCreate />
+                    <MovementCreate createMovement={createMovement}/>
                     }
                     {/* <button onClick={() => setMode('create')}>    
                         Button Click For Create Lift
