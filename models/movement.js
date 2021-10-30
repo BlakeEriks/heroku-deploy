@@ -10,7 +10,7 @@ const movementSchema = new Schema({
         reps: { type: Number, required: true}, 
         weight: { type: Number, required: true}
     }],
-    username: {type: String, required: true}
+    username: {type: String}
 })
 
 /* Create Movement Model */
