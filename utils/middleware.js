@@ -23,7 +23,8 @@ const middleware = app => {
     app.use(methodOverride("_method"))
 
     /* Parse URL-encoded bodies */
-    app.use(express.urlencoded({extended: true}))
+    // app.use(express.urlencoded({extended: true}))
+    app.use(express.json());
 
     /* Serve files from public */
     app.use(express.static('public'))
