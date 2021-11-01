@@ -27,7 +27,7 @@ const LiftMate = () => {
         <>
         <Navbar />
         <main>
-            <LiftEditor lift={lift}/>
+            <LiftEditor lift={lift} selectedDate={selectedDate}/>
             <div className="main-divider"></div>
             <Calendar lifts={liftsThisMonth} setSelectedDate={setSelectedDate} selectedDate={selectedDate} selectedMonth={selectedMonth}/>
         </main>
