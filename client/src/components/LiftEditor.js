@@ -4,7 +4,7 @@ import moment from 'moment'
 import MovementCreate from './MovementCreate'
 import Movement from './Movement'
 
-const LiftEditor = ({lift}) => {
+const LiftEditor = ({lift, selectedDate}) => {
 
     const [movements, setMovements] = useState([])
     const [mode, setMode] = useState('show')
@@ -12,21 +12,23 @@ const LiftEditor = ({lift}) => {
     useEffect( () => {
         const updateMovements = () => {
             MovementService.getAllForLift(lift._id).then(res => {
-                setMovements(res.data.map( (movement, index) => 
-                    <Movement key={movement._id} {...movement}/>
-                ))
+                setMovements(res.data)
+                setMode('show')
             })
         }
         if (lift._id) updateMovements()
     }, [lift])
 
+    const deleteMovement = id => {
+        MovementService.delete(id).then(res => {
+            setMovements([...movements.filter(movement => movement._id !== id)])
+        })
+    }
+
     const createMovement = movement => {
-        console.log(lift)
         movement.lift_id = lift._id
-        console.log(movement)
         MovementService.create(movement).then( res => {
-            console.log(res)
-            setMovements([...movements, <Movement key={res.data._id} {...res.data} />])
+            setMovements([...movements, res.data])
             setMode('show')
         })
     }
@@ -35,7 +37,7 @@ const LiftEditor = ({lift}) => {
         <div className="lift-editor-panel">
             <div className="notepad">
                 <h1 className="notepad-title">
-                    {moment(lift.date).format('MMM Do, YYYY')}
+                    {moment(selectedDate).format('MMM Do, YYYY')}
                 </h1>
                 <div className="notepad-content">
                     {/* Movement Index */}
@@ -43,7 +45,9 @@ const LiftEditor = ({lift}) => {
                     {mode === 'show'
                     ?
                     <>
-                    {movements}
+                    {movements.map( movement => 
+                        <Movement key={movement._id} {...movement} deleteMovement={deleteMovement} />
+                    )}
                     <button onClick={() => setMode('create')}>Add Movement</button>
                     </>
                     :
