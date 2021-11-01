@@ -22,7 +22,7 @@ const MovementService = {
         return http.put(`/movements/${id}`, movement)
     },
 
-    remove: id => {
+    delete: id => {
         return http.delete(`/movements/${id}`)
     }
 
