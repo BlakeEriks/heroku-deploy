@@ -5,7 +5,7 @@ const {Schema, model} = mongoose;
 /* Define Lift Schema */
 const liftSchema = new Schema({
     date: {type: Date, required: true},
-    username: {type: String, required: true}
+    username: {type: String}
 })
 
 /* Create Lift Model */
