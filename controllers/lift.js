@@ -26,40 +26,20 @@ liftRouter.get('/', (req,res) => {
                 (err,lifts) => res.send(lifts))
     }
     else {
-        let date = req.query.date ? new Date(req.query.date) : new Date();
-        let username = req.session.username
-        // if (!cache[date]) {
-            // Lift.findOne( {username, date}, (err,lift) => {
-            Lift.findOne( req.query, (err,lift) => {
-                res.send(lift)
-            // if (lift) {
-            //         getMovementsForLift({username, lift}, movements => {
-            //             // cache[date] = {lift, movements, date}
-            //             // res.setHeader('lift-id', lift._id);
-            //             res.render('lifts/show', {...cache[date], moment})
-            //         })
-            //     }
-            //     else {
-            //         // cache[date] = {lift: undefined, movements: undefined, date}
-            //         res.render('lifts/show', {...cache[date], moment})
-            //     }
-            })
-        // }
-        // else {
-            // res.render('lifts/show', {...cache[date], moment})
-        // }
+        // let username = req.session.username
+        Lift.findOne( req.query, (err,lift) => {
+            res.send(lift)
+        })
     }
 
 })
 
 liftRouter.post('/', (req,res) => {
-    
-    let date = new Date(req.query.date)
-    let username = req.session.username
-    
-    Lift.create({username, date}, (err,lift) => {
-        cache[date] = undefined
-        res.render('movements/index', {movements: [], liftId: lift._id})
+    // let date = new Date(req.query.date)
+    let date = new Date(req.body.date).toLocaleDateString()
+    // let username = req.session.username
+    Lift.create({date}, (err,lift) => {
+        res.send(lift)
     })
 })
 
