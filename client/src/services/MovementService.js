@@ -6,8 +6,10 @@ const MovementService = {
         return http.get('/movements')
     },
 
-    getAllForLift: liftId => {
-        return http.get(`/movements?liftId=${liftId}`)
+    getAllForMonth: month => {
+        console.log(month)
+        console.log(`/movements?month=${month+1}`)
+        return http.get(`/movements?month=${month+1}`)
     },
 
     get: id => {
