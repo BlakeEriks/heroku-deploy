@@ -1,40 +1,47 @@
 import React, {useEffect, useState} from 'react'
-import LiftService from '../services/LiftService'
 import Navbar from './Navbar'
 import LiftEditor from './LiftEditor'
 import Calendar from './Calendar'
+import MovementService from '../services/MovementService'
 
 const LiftMate = () => {
 
     const [selectedDate, setSelectedDate] = useState(new Date())
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth())
-    const [lift, setLift] = useState({})
-    const [liftsThisMonth, setLiftsThisMonth] = useState([])
+    const [liftsThisMonth, setLiftsThisMonth] = useState({})
+
+    const addMovementToSelectedDay = movement => {
+        let newLiftsThisMonth = {...liftsThisMonth}, date = selectedDate.getDate()
+        if (!newLiftsThisMonth[date]) newLiftsThisMonth[date] = []
+        newLiftsThisMonth[date] = [...newLiftsThisMonth[date], movement]
+        setLiftsThisMonth(newLiftsThisMonth)
+    }
 
     useEffect( () => {
-        LiftService.getByDate(selectedDate).then( res => {
-            setLift(res.data)
-        })
-    }, [selectedDate])
-
-    useEffect( () => {
-        LiftService.getAllForMonth(selectedMonth).then( lifts => {
-            setLiftsThisMonth(lifts.data)
+        MovementService.getAllForMonth(selectedMonth).then( res => {
+            let liftsThisMonth = {}
+            res.data.forEach(movement => {
+                let date = new Date(movement.date).getDate()
+                if (!liftsThisMonth[date]) liftsThisMonth[date] = []
+                liftsThisMonth[date] = [...liftsThisMonth[date], movement]
+            })
+            setLiftsThisMonth(liftsThisMonth)
         })
     }, [selectedMonth])
 
-    const createLift = async () => {
-        let lift = (await LiftService.create({date: selectedDate})).data
-        setLift(lift)
-        setLiftsThisMonth([...liftsThisMonth, lift])
-        return lift
+    const createMovement = movement => {
+        movement.date = selectedDate.toLocaleDateString()
+        MovementService.create(movement).then(res => {
+            console.log(res)
+            addMovementToSelectedDay(res.data)
+        })
     }
 
     return (
         <>
         <Navbar />
         <main>
-            <LiftEditor lift={lift} selectedDate={selectedDate} createLift={createLift}/>
+            <LiftEditor selectedDate={selectedDate} movements={liftsThisMonth[selectedDate.getDate()]} createMovement={createMovement}/>
             <div className="main-divider"></div>
             <Calendar lifts={liftsThisMonth} setSelectedDate={setSelectedDate} selectedDate={selectedDate} selectedMonth={selectedMonth}/>
         </main>

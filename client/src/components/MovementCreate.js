@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const MovementCreate = ({createMovement}) => {
+const MovementCreate = ({createMovement, setMode}) => {
 
     const [movementType, setMovementType] = useState('')
 
@@ -15,6 +15,7 @@ const MovementCreate = ({createMovement}) => {
     const onSubmit = event => {
         event.preventDefault()
         createMovement({type: movementType, sets})
+        setMode('show')
     }
 
     return (
@@ -30,10 +31,6 @@ const MovementCreate = ({createMovement}) => {
                         <input type="number" name="reps" value={set.reps} className="set-input" onChange={updateSet(index)}/> reps
                     </div>
                 )}
-                {/* <div>
-                    <input type="text" name="weight" placeholder="0" className="set-input" /> lbs
-                    <input type="text" name="reps" placeholder="0" className="set-input" /> reps
-                </div> */}
                 <button type="button" className="pink-on-white" onClick={() => setSets([...sets, {reps: '', weight: ''}])}>+ Add Set</button>
             </fieldset>
             <button type="submit" className="add-movement">Create Movement</button>
