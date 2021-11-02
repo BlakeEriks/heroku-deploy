@@ -1,7 +1,7 @@
 /* Dependencies */
 const express = require('express')
 const Movement = require('../models/movement')
-const loginCheck = require('../utils/loginCheck')
+// const loginCheck = require('../utils/loginCheck')
 
 /* Create Movement Router */
 const movementRouter = express.Router()
@@ -42,11 +42,6 @@ movementRouter.get('/', (req,res) => {
 })
 
 movementRouter.post('/', (req,res) => {
-    // let movement = getMovementFromBody(req.body)
-    // console.log(req.body)
-    console.log(req.body)
-    // console.log(req.query)
-    // movement.lift_id = req.query.liftId
     // movement.username = req.session.username
     Movement.create(req.body)
     .then( movement => {
