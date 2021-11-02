@@ -1,10 +1,16 @@
+import { useState } from 'react';
+import { useEffect } from 'react/cjs/react.development';
 import Day from './Day'
 
 const Calendar = props => {
 
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    const [calendar, setCalendar] = useState([])
 
-    const calendar = constructCalendar(props);
+    useEffect( () => {
+        setCalendar(constructCalendar(props))
+    }, [props])
+    
 
     return (
         <div className="lift-viewer-panel">
