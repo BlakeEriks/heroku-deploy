@@ -14,8 +14,8 @@ const LiftService = {
         return http.get(`/lifts?date=${date.toLocaleDateString("en-US")}`)
     },
 
-    create: data => {
-        return http.post(`/lifts`, data)
+    create: date => {
+        return http.post(`/lifts`, date)
     },
 
     update: (id, data) => {
