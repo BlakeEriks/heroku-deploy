@@ -10,7 +10,7 @@ const cors = require("cors")
 /* Routers */
 const HomeRouter = require('../controllers/home')
 const UserRouter = require('../controllers/user')
-const LiftRouter = require('../controllers/lift')
+// const LiftRouter = require('../controllers/lift')
 const MovementRouter = require('../controllers/movement')
 
 /* Middleware Setup Function */
@@ -48,7 +48,7 @@ const middleware = app => {
     /* Add routers to app */
     app.use('/', UserRouter)
     app.use('/', HomeRouter)
-    app.use('/lifts', LiftRouter)
+    // app.use('/lifts', LiftRouter)
     app.use('/movements', MovementRouter)
 }
 

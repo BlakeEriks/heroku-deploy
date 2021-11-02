@@ -36,9 +36,15 @@ movementRouter.delete('/:id', (req,res) => {
 
 movementRouter.get('/', (req,res) => {
     // let username = req.session.username
-    Movement.find({lift_id: req.query.liftId}, (err, movements) => {
-        res.send(movements)
-    })
+    if (req.query.month) {
+        Movement.find({"$expr": { "$eq": [{ "$month": "$date" }, Number(req.query.month)] }})
+            .then(movements => {console.log(movements); res.send(movements)})
+    }
+    else {
+        Movement.find({lift_id: req.query.liftId}, (err, movements) => {
+            res.send(movements)
+        })
+    }
 })
 
 movementRouter.post('/', (req,res) => {
