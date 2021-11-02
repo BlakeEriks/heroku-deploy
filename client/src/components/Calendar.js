@@ -34,7 +34,6 @@ const constructCalendar = ({lifts, selectedDate, setSelectedDate}) => {
     let today = new Date()
     let date = new Date(today.getFullYear(), today.getMonth(), 1)
     let week = []
-    
 
     while (date.getMonth() === today.getMonth()) {
         if (date.getDay() === 0) {
@@ -47,7 +46,7 @@ const constructCalendar = ({lifts, selectedDate, setSelectedDate}) => {
         }
         week.push(
             <Day key={date.getDate()} date={new Date(date.getTime())} selected={selectedDate.getDate() === date.getDate()} setSelectedDate={setSelectedDate} 
-                hasLift={lifts.some(lift => new Date(lift.date).getDate() === date.getDate())}/>
+                hasLift={date.getDate() in lifts}/>
         )
         date.setDate(date.getDate() + 1);
     }
