@@ -23,11 +23,18 @@ const LiftMate = () => {
         })
     }, [selectedMonth])
 
+    const createLift = async () => {
+        let lift = (await LiftService.create({date: selectedDate})).data
+        setLift(lift)
+        setLiftsThisMonth([...liftsThisMonth, lift])
+        return lift
+    }
+
     return (
         <>
         <Navbar />
         <main>
-            <LiftEditor lift={lift} selectedDate={selectedDate}/>
+            <LiftEditor lift={lift} selectedDate={selectedDate} createLift={createLift}/>
             <div className="main-divider"></div>
             <Calendar lifts={liftsThisMonth} setSelectedDate={setSelectedDate} selectedDate={selectedDate} selectedMonth={selectedMonth}/>
         </main>

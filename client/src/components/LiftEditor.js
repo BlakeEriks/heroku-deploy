@@ -4,7 +4,7 @@ import moment from 'moment'
 import MovementCreate from './MovementCreate'
 import Movement from './Movement'
 
-const LiftEditor = ({lift, selectedDate}) => {
+const LiftEditor = ({lift, selectedDate, createLift}) => {
 
     const [movements, setMovements] = useState([])
     const [mode, setMode] = useState('show')
@@ -25,8 +25,8 @@ const LiftEditor = ({lift, selectedDate}) => {
         })
     }
 
-    const createMovement = movement => {
-        movement.lift_id = lift._id
+    const createMovement = async (movement) => {
+        movement.lift_id = lift._id ? lift._id : (await createLift())._id
         MovementService.create(movement).then( res => {
             setMovements([...movements, res.data])
             setMode('show')
