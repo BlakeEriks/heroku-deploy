@@ -13,7 +13,7 @@ const LiftMate = () => {
     const addMovementToSelectedDay = movement => {
         let newLiftsThisMonth = {...liftsThisMonth}, date = selectedDate.getDate()
         if (!newLiftsThisMonth[date]) newLiftsThisMonth[date] = []
-        newLiftsThisMonth[date] = [...newLiftsThisMonth[date], movement]
+        newLiftsThisMonth[date].push(movement)
         setLiftsThisMonth(newLiftsThisMonth)
     }
 
@@ -23,17 +23,29 @@ const LiftMate = () => {
             res.data.forEach(movement => {
                 let date = new Date(movement.date).getDate()
                 if (!liftsThisMonth[date]) liftsThisMonth[date] = []
-                liftsThisMonth[date] = [...liftsThisMonth[date], movement]
+                liftsThisMonth[date].push(movement)
             })
-            setLiftsThisMonth(liftsThisMonth)
+            setLiftsThisMonth({...liftsThisMonth})
         })
     }, [selectedMonth])
 
     const createMovement = movement => {
         movement.date = selectedDate.toLocaleDateString()
         MovementService.create(movement).then(res => {
-            console.log(res)
             addMovementToSelectedDay(res.data)
+        })
+    }
+
+    const deleteMovement = id => {
+        MovementService.delete(id).then(res => {
+            const newLiftsThisMonth = {...liftsThisMonth}
+            if (newLiftsThisMonth[selectedDate.getDate()].length === 1) {
+                newLiftsThisMonth[selectedDate.getDate()] = undefined
+            }
+            else {
+                newLiftsThisMonth[selectedDate.getDate()] = [...newLiftsThisMonth[selectedDate.getDate()].filter(movement => movement._id !== id)]
+            }
+            setLiftsThisMonth(newLiftsThisMonth)
         })
     }
 
@@ -41,7 +53,7 @@ const LiftMate = () => {
         <>
         <Navbar />
         <main>
-            <LiftEditor selectedDate={selectedDate} movements={liftsThisMonth[selectedDate.getDate()]} createMovement={createMovement}/>
+            <LiftEditor selectedDate={selectedDate} movements={liftsThisMonth[selectedDate.getDate()]} createMovement={createMovement} deleteMovement={deleteMovement}/>
             <div className="main-divider"></div>
             <Calendar lifts={liftsThisMonth} setSelectedDate={setSelectedDate} selectedDate={selectedDate} selectedMonth={selectedMonth}/>
         </main>
