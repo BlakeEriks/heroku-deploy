@@ -36,6 +36,7 @@ const Calendar = props => {
 }
 
 const constructCalendar = ({lifts, selectedDate, setSelectedDate}) => {
+
     let weeks = []
     let today = new Date()
     let date = new Date(today.getFullYear(), today.getMonth(), 1)
@@ -52,7 +53,7 @@ const constructCalendar = ({lifts, selectedDate, setSelectedDate}) => {
         }
         week.push(
             <Day key={date.getDate()} date={new Date(date.getTime())} selected={selectedDate.getDate() === date.getDate()} setSelectedDate={setSelectedDate} 
-                hasLift={date.getDate() in lifts}/>
+                hasLift={lifts[date.getDate()]} />
         )
         date.setDate(date.getDate() + 1);
     }
