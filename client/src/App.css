@@ -1,18 +1,23 @@
 :root {
-  --dark: #011627;
-  --light: #f4f4f4;
-  --light2: #d3d3d380;
-  --highlight: #41EAD4;
-  --accent: #D10054;
-  background: var(--dark);
+  --dark: 1, 22, 39;
+  --light: 244, 244, 244;
+  --light2: 211, 211, 211, 0.502;
+  --highlight: 65, 234, 212;
+  --accent: 209, 0, 84;
+  background: rgb(var(--dark));
 }
 
 body, html, #root {
   margin: 0;
   height: 100%;
-  background: var(--dark);
+  /* background: rgb(var(--dark)); */
   font-size: 24px;
   font-family: 'Raleway', sans-serif;
+}
+
+body {
+  background: rgb(174,4,76);
+  background: linear-gradient(156deg, rgba(174,4,76,1) 0%, rgba(45,17,48,1) 51%, rgba(1,22,39,1) 100%);
 }
 
 a {
@@ -32,7 +37,7 @@ nav {
   display: flex;
   height: 50px;
   padding: 0 -50%;
-  background: var(--accent);
+  background: rgb(var(--dark));
   flex: 1;
 }
 
@@ -51,13 +56,13 @@ nav {
 }
 
 .nav-logo {
-  color: var(--light);
+  color: rgb(var(--light));
   font-family: 'BioRhyme', serif;
   cursor: pointer;
 }
 
 .nav-greeting {
-  color: var(--light);
+  color: rgb(var(--light));
 }
 
 .nav-user {
@@ -110,42 +115,51 @@ nav {
 .calendar-title {
   font-family: 'BioRhyme', serif;
   font-size: 72px;
-  color: var(--light);
+  color: rgb(var(--light));
   align-self: center;
 }
 
 .notepad {
-  width: 85%;
-  height: 60%;
-  background: var(--light);
+  width: 90%;
+  background: rgb(var(--dark), 0.5);
   border-radius: 10px;
+  overflow: hidden;
+  /* box-shadow: rgb(var(--highlight)) 0px 4px 8px 0px, rgb(var(--highlight)) 0px 4px 32px 0px; */
+  /* border: 3px solid rgb(var(--highlight)); */
 }
 
 @keyframes color-light-to-dark {
-  0% {color: var(--light);}
-  100% {color: var(--dark);}
+  0% {color: rgb(var(--light));}
+  100% {color: rgb(var(--dark));}
 }
 
 .notepad-title {
   font-size: 56px;
-  color: var(--accent);
+  color: rgb(var(--light));
+  /* background: rgb(var(--dark)); */
   text-align: center;
-  border-top: 3px solid var(--dark);
-  border-bottom: 3px solid var(--dark);
+  /* border-bottom: 3px solid rgb(var(--highlight)); */
   padding: 8px 0;
   animation-name: glow-text;
   animation-duration: 1s;
+  margin: 0;
 }
 
 .notepad-content {
-  height: 63%;
-  border-bottom: 3px solid var(--dark);
   display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+  border-top: 3px solid rgb(var(--accent));
+}
+
+.notepad-footer {
+  display: flex;
+  flex-direction: column;
 }
 
 .movement-info {
   font-size: 24px;
-  border-color: var(--light);
+  border-color: rgb(var(--light));
 }
 
 .movement-label {
@@ -174,7 +188,7 @@ button.add-movement {
   position: relative;
   bottom: 20px;
   left: 230px;
-  border: 2px solid var(--light);
+  border: 2px solid rgb(var(--light));
 }
 
 .movement-item {
@@ -183,36 +197,37 @@ button.add-movement {
   cursor: pointer;
   padding: 4px 10px;
   align-items: center;
-  color: var(--dark);
+  color: rgb(var(--light));
   animation-name: color-light-to-dark;
   animation-duration: 0.3s;
+  height: 44px;
+  font-weight: bold;
 }
 
 button.movement-delete {
   background: none;
-  color: var(--light);
+  color: rgb(var(--light));
 }
 
 .movement-item:hover {
-  background: var(--light2);
+  background: rgb(var(--light2));
 }
 
 .movement-item:hover > button.movement-delete {
-  color: var(--accent)
+  color: rgb(var(--accent));
 }
 
 button.movement-delete:hover {
-  background: var(--dark);
-  color: var(--light);
+  background: rgb(var(--dark));
+  color: rgb(var(--light));
 }
 
 button.movement-add {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
-  width: 75%;
-  margin: 0 auto;
+  padding: 5px;
+  background: transparent;
 }
 
 .first-week {
@@ -224,15 +239,15 @@ button.movement-add {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--highlight);
+  color: rgb(var(--highlight));
   border-radius: 25%;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .calendar-day:hover {
-  color: var(--accent);
-  background: var(--light);
+  color: rgb(var(--accent));
+  background: rgb(var(--light));
 }
 
 .calendar-heading-label {
@@ -240,20 +255,20 @@ button.movement-add {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--accent);
+  color: rgb(var(--accent));
   font-size: 36px;
-  background: var(--light);
+  background: rgb(var(--light));
 }
 
 .selected {
-  background: var(--light);
-  color: var(--accent);
+  background: rgb(var(--light));
+  color: rgb(var(--accent));
 }
 
 .main-divider {
   height: 70%;
   align-self: center;
-  border: 1px solid var(--accent);
+  border: 1px solid rgb(var(--accent));
 }
 
 .intro-div {
@@ -278,7 +293,7 @@ button.movement-add {
   font-family: 'BioRhyme', serif;
   font-size: 0px;
   animation-duration: 5s;
-  color: var(--accent);
+  color: rgb(var(--accent));
   position:absolute;
   top:15%;
 }
@@ -286,7 +301,7 @@ button.movement-add {
 .intro-text {
   font-family: 'BioRhyme', serif;
   font-size: 96px;
-  color: var(--dark);
+  color: rgb(var(--dark));
   display: none;
   animation-duration: 3s;
   margin: 60px 0;
@@ -294,7 +309,7 @@ button.movement-add {
 
 .login-box {
   padding: 0 30px;
-  background: var(--light);
+  background: rgb(var(--light));
   border-radius: 10px;
   animation-name: fade-in;
   animation-duration: 3s;
@@ -320,8 +335,8 @@ button.movement-add {
 }
 
 input {
-  color: var(--light);
-  background: var(--dark);
+  color: rgb(var(--light));
+  background: rgb(var(--dark));
   font-size: 24px;
   font-family: 'Raleway', sans-serif;
   border-radius: 10px;
@@ -329,17 +344,17 @@ input {
   padding: 10px 0;
   border: none;
   transition: 0.1s;
-  box-shadow: 0 0 0 1pt var(--accent);
+  box-shadow: 0 0 0 1pt rgb(var(--accent));
   color: transparent;
-  text-shadow: 0 0 0 var(--light);
+  text-shadow: 0 0 0 rgb(var(--light));
 }
 
 input::placeholder {
-  color: var(--light);
+  color: rgb(var(--light));
 }
 
 input:focus {
-  box-shadow: 0 0 3pt 2pt var(--highlight);
+  box-shadow: 0 0 3pt 2pt rgb(var(--highlight));
   outline: none;
   border-radius: 10px;
 }
@@ -348,7 +363,7 @@ input:focus {
   position: relative;
   height: 0px;
   width: 100%;
-  border: 1px solid var(--dark);
+  border: 1px solid rgb(var(--dark));
   top: -8px;
 }
 
@@ -361,15 +376,15 @@ input:focus {
   z-index: 3;
   width: max-content;
   align-self: center;
-  background: var(--light);
+  background: rgb(var(--light));
   padding: 0 20px;
   animation-name: fade-in;
   animation-duration: 3s;
 }
 
 button {
-  background: var(--accent);
-  color: var(--light);
+  background: rgb(var(--accent));
+  color: rgb(var(--light));
   border: none;
   font-size: 16px;
   width: auto;
@@ -379,16 +394,16 @@ button {
 }
 
 .pink-on-white {
-  color: var(--accent);
-  background: var(--light);
+  color: rgb(var(--accent));
+  background: rgb(var(--light));
 }
 
 .highlight {
-  color: var(--highlight);
+  color: rgb(var(--highlight));
 }
 
 .accent {
-  color: var(--accent);
+  color: rgb(var(--accent));
 }
 
 @keyframes lift-text-move-right {
@@ -407,19 +422,19 @@ button {
 
 @keyframes fade-out {
   0% {display:block}
-  33% {color: var(--light);}
-  100% {color: var(--dark);}
+  33% {color: rgb(var(--light));}
+  100% {color: rgb(var(--dark));}
 }
 
 @keyframes lift-mate-text {
-  0% {color: var(--dark);top:48%;}
-  20% {color: var(--light);}
-  30% {color: var(--light);}
-  60% {color:var(--accent);top:48%;}
+  0% {color: rgb(var(--dark));top:48%;}
+  20% {color: rgb(var(--light));}
+  30% {color: rgb(var(--light));}
+  60% {color:rgb(var(--accent));top:48%;}
   100% {top:15%;}
 }
 
 @keyframes fade-in {
-  0% {background: var(--dark);}
-  100% {background: var(--light);}
+  0% {background: rgb(var(--dark));}
+  100% {background: rgb(var(--light));}
 }
