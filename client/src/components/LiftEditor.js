@@ -1,28 +1,12 @@
-import React, {useEffect, useState} from 'react'
-import MovementService from '../services/MovementService'
+import {useState} from 'react'
 import moment from 'moment'
 import MovementCreate from './MovementCreate'
 import Movement from './Movement'
+import { AddOutline } from 'react-ionicons'
 
-const LiftEditor = ({movements, selectedDate, createMovement}) => {
+const LiftEditor = ({movements, selectedDate, createMovement, deleteMovement}) => {
 
     const [mode, setMode] = useState('show')
-
-    // useEffect( () => {
-    //     const updateMovements = () => {
-    //         MovementService.getAllForLift(lift._id).then(res => {
-    //             setMovements(res.data)
-    //             setMode('show')
-    //         })
-    //     }
-    //     if (lift._id) updateMovements()
-    // }, [lift])
-
-    const deleteMovement = id => {
-        // MovementService.delete(id).then(res => {
-        //     setMovements([...movements.filter(movement => movement._id !== id)])
-        // })
-    }
 
     return (
         <div className="lift-editor-panel">
@@ -37,7 +21,14 @@ const LiftEditor = ({movements, selectedDate, createMovement}) => {
                     {movements && movements.map( movement => 
                         <Movement key={movement._id} {...movement} deleteMovement={deleteMovement} />
                     )}
-                    <button onClick={() => setMode('create')}>Add Movement</button>
+                    <button onClick={() => setMode('create')} className='movement-add'>
+                        <AddOutline 
+                            color={'#FFFFFF'}
+                            height='25px'
+                            width='25px'
+                            title={'Add Movement'}
+                        />
+                    </button>
                     </>
                     :
                     <MovementCreate createMovement={createMovement} setMode={setMode}/>
