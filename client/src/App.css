@@ -121,21 +121,6 @@ nav {
   border-radius: 10px;
 }
 
-.notepad.htmx-swapping > .notepad-title {
-  color: var(--highlight);
-  transition: color 0.3s ease-out;
-}
-
-.notepad.htmx-swapping > .notepad-content {
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-}
-
-@keyframes glow-text {
-  0% {text-shadow:1px 1px 10px var(--highlight),; color: var(--highlight); font-size: 56px;}
-  100% {text-shadow: 1px; color: var(--accent); font-size: 56px;}
-}
-
 @keyframes color-light-to-dark {
   0% {color: var(--light);}
   100% {color: var(--dark);}
@@ -155,6 +140,7 @@ nav {
 .notepad-content {
   height: 63%;
   border-bottom: 3px solid var(--dark);
+  display: flex;
 }
 
 .movement-info {
@@ -218,6 +204,15 @@ button.movement-delete {
 button.movement-delete:hover {
   background: var(--dark);
   color: var(--light);
+}
+
+button.movement-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 75%;
+  margin: 0 auto;
 }
 
 .first-week {
