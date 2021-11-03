@@ -7,8 +7,6 @@ const MovementService = {
     },
 
     getAllForMonth: month => {
-        console.log(month)
-        console.log(`/movements?month=${month+1}`)
         return http.get(`/movements?month=${month+1}`)
     },
 
