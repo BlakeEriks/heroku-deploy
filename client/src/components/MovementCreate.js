@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { Button } from "../styles/Button";
+import { HorizontalFlexBox } from "../styles/Container";
 
 const MovementCreate = ({createMovement, setMode}) => {
 
@@ -26,14 +28,21 @@ const MovementCreate = ({createMovement, setMode}) => {
                 <input type="text" name="type" value={movementType} className="movement-input" onChange={event => setMovementType(event.target.value)}></input>
                 <div className="movement-label">Sets:</div>
                 {sets.map( (set, index) => 
-                    <div key={index}>
+                    <div className='set-field' key={index}>
                         <input type="number" name="weight" value={set.weight} className="set-input" onChange={updateSet(index)}/> lbs
                         <input type="number" name="reps" value={set.reps} className="set-input" onChange={updateSet(index)}/> reps
                     </div>
                 )}
                 <button type="button" className="pink-on-white" onClick={() => setSets([...sets, {reps: '', weight: ''}])}>+ Add Set</button>
+                <HorizontalFlexBox>
+                    <Button type="reset" onClick={() => setMode('show')} >
+                        <i className="fas fa-times medium accent"></i>
+                    </Button>
+                    <Button type="submit" >
+                        <i className="fas fa-check medium accent"></i>
+                    </Button>
+                </HorizontalFlexBox>
             </fieldset>
-            <button type="submit" className="add-movement">Create Movement</button>
         </form>
     )
 }
