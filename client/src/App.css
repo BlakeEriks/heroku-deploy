@@ -10,7 +10,6 @@
 body, html, #root {
   margin: 0;
   height: 100%;
-  /* background: rgb(var(--dark)); */
   font-size: 24px;
   font-family: 'Raleway', sans-serif;
 }
@@ -120,12 +119,13 @@ nav {
 }
 
 .notepad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 90%;
   background: rgb(var(--dark), 0.5);
   border-radius: 10px;
   overflow: hidden;
-  /* box-shadow: rgb(var(--highlight)) 0px 4px 8px 0px, rgb(var(--highlight)) 0px 4px 32px 0px; */
-  /* border: 3px solid rgb(var(--highlight)); */
 }
 
 @keyframes color-light-to-dark {
@@ -136,9 +136,7 @@ nav {
 .notepad-title {
   font-size: 56px;
   color: rgb(var(--light));
-  /* background: rgb(var(--dark)); */
   text-align: center;
-  /* border-bottom: 3px solid rgb(var(--highlight)); */
   padding: 8px 0;
   animation-name: glow-text;
   animation-duration: 1s;
@@ -147,9 +145,9 @@ nav {
 
 .notepad-content {
   display: flex;
+  width: 90%;
   flex-direction: column;
   margin: 0 10px;
-  border-top: 3px solid rgb(var(--accent));
 }
 
 .notepad-footer {
@@ -160,11 +158,14 @@ nav {
 .movement-info {
   font-size: 24px;
   border-color: rgb(var(--light));
+  margin-bottom: 10px;
+  padding-bottom: 0;
 }
 
 .movement-label {
   font-size: 24px;
   margin: 4px 0;
+  color: rgb(var(--light))
 }
 
 legend{
@@ -177,18 +178,17 @@ legend{
   margin-bottom: 8px;
 }
 
+.set-field {
+  color: rgb(var(--light));
+  display: flex;
+  justify-content: space-between;
+}
+
 .set-input {
   padding: 2px;
   width: 30%;
   display: inline;
   margin-bottom: 8px;
-}
-
-button.add-movement {
-  position: relative;
-  bottom: 20px;
-  left: 230px;
-  border: 2px solid rgb(var(--light));
 }
 
 .movement-item {
@@ -198,8 +198,6 @@ button.add-movement {
   padding: 4px 10px;
   align-items: center;
   color: rgb(var(--light));
-  animation-name: color-light-to-dark;
-  animation-duration: 0.3s;
   height: 44px;
   font-weight: bold;
 }
@@ -220,14 +218,6 @@ button.movement-delete {
 button.movement-delete:hover {
   background: rgb(var(--dark));
   color: rgb(var(--light));
-}
-
-button.movement-add {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
-  background: transparent;
 }
 
 .first-week {
@@ -345,7 +335,6 @@ input {
   border: none;
   transition: 0.1s;
   box-shadow: 0 0 0 1pt rgb(var(--accent));
-  color: transparent;
   text-shadow: 0 0 0 rgb(var(--light));
 }
 
@@ -404,6 +393,10 @@ button {
 
 .accent {
   color: rgb(var(--accent));
+}
+
+.medium {
+  font-size: 32px;
 }
 
 @keyframes lift-text-move-right {
