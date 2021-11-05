@@ -145,6 +145,8 @@ nav {
 
 .notepad-content {
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 90%;
   flex-direction: column;
   margin: 0 10px;
@@ -182,6 +184,7 @@ legend{
   color: rgb(var(--light));
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .set-input {
@@ -191,11 +194,16 @@ legend{
   margin-bottom: 8px;
 }
 
+.set-input-text {
+  padding: 0 10px;
+}
+
 .movement-item {
   display: flex;
   justify-content: space-between;
   cursor: pointer;
   padding: 4px 10px;
+  width: 100%;
   align-items: center;
   color: rgb(var(--light));
   height: 44px;
@@ -397,6 +405,10 @@ button {
 
 .medium {
   font-size: 32px;
+}
+
+.small {
+  font-size: 24px;
 }
 
 @keyframes lift-text-move-right {
