@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Colors from './Colors'
 
 export const HorizontalDivider = styled.div`
-    border: 2px solid ${Colors.accent};
+    border: 2px solid ${props => Colors[props.color] || Colors.accent};
     width: 90%;
-    text-align: center;
+    margin: 0 auto;
 `
