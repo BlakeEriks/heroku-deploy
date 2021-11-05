@@ -17,12 +17,12 @@ const MovementCreate = ({createMovement, setMode}) => {
 
     const onSubmit = event => {
         event.preventDefault()
-        createMovement({type: movementType, sets})
+        if (sets.length > 0) createMovement({type: movementType, sets})
         setMode('show')
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className='movement-create-form'>
             <fieldset className="movement-info">
                 <legend className="highlight">Create a Movement</legend>
                 <div className="movement-label">Movement Type:</div>
@@ -39,10 +39,12 @@ const MovementCreate = ({createMovement, setMode}) => {
                         </SquareButton>
                     </div>
                 )}
-                <Button type='button' onClick={() => setSets([...sets, {reps: sets[sets.length-1].reps, weight: sets[sets.length-1].weight}])}>
-                    <i className="fas fa-plus medium accent"></i>
-                </Button>
-                <HorizontalDivider color={'light'}/>
+                <HorizontalFlexBox>
+                    <Button type='button' onClick={() => setSets([...sets, {reps: sets[sets.length-1].reps, weight: sets[sets.length-1].weight}])}>
+                        <i className="fas fa-plus medium accent"></i>
+                    </Button>
+                </HorizontalFlexBox>
+                <HorizontalDivider color={'light'} width='1px'/>
                 <HorizontalFlexBox spaceAround>
                     <Button type="reset" onClick={() => setMode('show')} >
                         <i className="fas fa-times medium accent"></i>
