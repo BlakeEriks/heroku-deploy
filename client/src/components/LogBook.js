@@ -3,8 +3,10 @@ import Navbar from './Navbar'
 import LiftEditor from './LiftEditor'
 import Calendar from './Calendar'
 import MovementService from '../services/MovementService'
+import { VerticalDivider } from '../styles/Divider'
+import TabNav from './TabNav'
 
-const LiftMate = () => {
+const LogBook = () => {
 
     const [selectedDate, setSelectedDate] = useState(new Date())
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth())
@@ -50,16 +52,13 @@ const LiftMate = () => {
     }
 
     return (
-        <>
-        <Navbar />
         <main>
             <LiftEditor selectedDate={selectedDate} movements={liftsThisMonth[selectedDate.getDate()]} createMovement={createMovement} deleteMovement={deleteMovement}/>
-            <div className="main-divider"></div>
+            <VerticalDivider height='70%'/>
             <Calendar lifts={liftsThisMonth} setSelectedDate={setSelectedDate} selectedDate={selectedDate} selectedMonth={selectedMonth}/>
         </main>
-        </>
     )
 
 }
 
-export default LiftMate
+export default LogBook
