@@ -1,12 +1,13 @@
 import { useState } from "react"
-import { Button } from "../styles/Button";
+import { Button, SquareButton } from "../styles/Button";
 import { HorizontalFlexBox } from "../styles/Container";
+import { HorizontalDivider } from "../styles/Divider";
 
 const MovementCreate = ({createMovement, setMode}) => {
 
     const [movementType, setMovementType] = useState('')
 
-    const [sets, setSets] = useState([]);
+    const [sets, setSets] = useState([{reps: 0, weight: 0}]);
 
     const updateSet = index => event => {
         let newSets = [...sets]
@@ -29,12 +30,20 @@ const MovementCreate = ({createMovement, setMode}) => {
                 <div className="movement-label">Sets:</div>
                 {sets.map( (set, index) => 
                     <div className='set-field' key={index}>
-                        <input type="number" name="weight" value={set.weight} className="set-input" onChange={updateSet(index)}/> lbs
-                        <input type="number" name="reps" value={set.reps} className="set-input" onChange={updateSet(index)}/> reps
+                        <input type="number" name="weight" value={set.weight} className="set-input" onChange={updateSet(index)}/>
+                        <span className='set-input-text'>lbs</span>
+                        <input type="number" name="reps" value={set.reps} className="set-input" onChange={updateSet(index)}/>
+                        <span className='set-input-text'>reps</span>
+                        <SquareButton type='button' onClick={() => setSets([...sets.filter( (_, setIndex) => setIndex !== index)])}>
+                            <i className="fas fa-times small accent"></i>
+                        </SquareButton>
                     </div>
                 )}
-                <button type="button" className="pink-on-white" onClick={() => setSets([...sets, {reps: '', weight: ''}])}>+ Add Set</button>
-                <HorizontalFlexBox>
+                <Button type='button' onClick={() => setSets([...sets, {reps: sets[sets.length-1].reps, weight: sets[sets.length-1].weight}])}>
+                    <i className="fas fa-plus medium accent"></i>
+                </Button>
+                <HorizontalDivider color={'light'}/>
+                <HorizontalFlexBox spaceAround>
                     <Button type="reset" onClick={() => setMode('show')} >
                         <i className="fas fa-times medium accent"></i>
                     </Button>
