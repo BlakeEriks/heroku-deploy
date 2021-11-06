@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { ChartLineIcon, EditIcon, HomeIcon } from "../styles/Icon"
+import { CalendarIcon, ChartLineIcon, HomeIcon } from "../styles/Icon"
 
 const TabNav = () => {
 
     const tabs = [  {label: 'Home', path: '/home', icon: <HomeIcon />},
-                    {label: 'Logbook', path: '/logbook', icon: <EditIcon />},
+                    {label: 'Logbook', path: '/logbook', icon: <CalendarIcon />},
                     {label: 'Trends', path: '/trends', icon: <ChartLineIcon />}
                 ]
 

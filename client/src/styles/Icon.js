@@ -36,3 +36,10 @@ export const ChartLineIcon = styled(faSolid.ChartLine)`
     height: 32px;
     transition: color 0.3s ease-in-out;
 `
+
+export const CalendarIcon = styled(faSolid.Calendar)`
+    color: ${Colors.accent};
+    width: 32px;
+    height: 32px;
+    transition: color 0.3s ease-in-out;
+`
