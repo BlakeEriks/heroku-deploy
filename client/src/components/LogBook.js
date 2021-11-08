@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import Navbar from './Navbar'
 import LiftEditor from './LiftEditor'
 import Calendar from './Calendar'
 import MovementService from '../services/MovementService'
 import { VerticalDivider } from '../styles/Divider'
-import TabNav from './TabNav'
 
 const LogBook = () => {
 
