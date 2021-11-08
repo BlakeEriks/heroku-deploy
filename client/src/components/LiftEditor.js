@@ -5,7 +5,7 @@ import Movement from './Movement'
 import { useEffect } from 'react/cjs/react.development'
 import { Button } from '../styles/Button'
 import { HorizontalDivider } from '../styles/Divider'
-import { Icon, PlusIcon } from '../styles/Icon'
+import { PlusIcon } from '../styles/Icon'
 
 const LiftEditor = ({movements, selectedDate, createMovement, deleteMovement}) => {
 
