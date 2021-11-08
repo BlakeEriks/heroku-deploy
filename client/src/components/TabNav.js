@@ -9,7 +9,7 @@ const TabNav = () => {
                     {label: 'Trends', path: '/trends', icon: <ChartLineIcon />}
                 ]
 
-    const [selectedTab, setSelectedTab] = useState(tabs[0])
+    const [selectedTab, setSelectedTab] = useState(0)
 
     return (
         <div className='tab-nav-container'>
