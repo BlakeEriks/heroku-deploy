@@ -5,10 +5,11 @@ import TabNav from './components/TabNav';
 import Navbar from './components/Navbar';
 import Trends from './components/Trends';
 import Home from './components/Home';
+import { ViewportProvider } from './ViewportContext';
 
 function App() {
   return (
-    <>
+    <ViewportProvider>
       <Navbar />
       <TabNav />
       <Routes>
@@ -17,7 +18,7 @@ function App() {
         <Route path="/logbook" element={<LogBook />}/>
         <Route path="/trends" element={<Trends />}/>
       </Routes>
-    </>
+    </ViewportProvider>
   )
 }
 
