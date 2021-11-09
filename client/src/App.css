@@ -97,12 +97,23 @@ nav {
   justify-content: center;
 }
 
-.lift-viewer-panel {
+@media screen and (max-width: 500px) {
+  
+  .lift-viewer-panel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+
+/* .lift-viewer-panel {
   width:60%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .calendar {
   width: 90%;
