@@ -2,6 +2,8 @@ import { useState } from "react"
 import { Button, SquareButton } from "../styles/Button";
 import { HorizontalFlexBox } from "../styles/Container";
 import { HorizontalDivider } from "../styles/Divider";
+import movements from '../movements'
+import SelectSearch from "react-select-search";
 
 const MovementCreate = ({createMovement, setMode}) => {
 
@@ -21,12 +23,34 @@ const MovementCreate = ({createMovement, setMode}) => {
         setMode('show')
     }
 
+    const handleFilter = (items) => {
+        return (searchValue) => {
+            if (searchValue.length === 0) {
+                return options
+            }
+            return items.filter(item => item.name.includes(searchValue))
+        }
+    }
+
+    let a = movements.slice(30)
+    const options = []
+    a.forEach(movement => options.push({name: movement, value: movement}))
+
     return (
         <form onSubmit={onSubmit} className='movement-create-form'>
             <fieldset className="movement-info">
                 <legend className="highlight">Create a Movement</legend>
                 <div className="movement-label">Movement Type:</div>
-                <input type="text" name="type" value={movementType} className="movement-input" onChange={event => setMovementType(event.target.value)}></input>
+                <SelectSearch
+                    options={options}
+                    filterOptions={handleFilter}
+                    search
+                    value={movementType}
+                    onChange={value => setMovementType(value)}
+                />
+                {/* <select type="text" name="type" value={movementType} className="movement-input" onChange={event => setMovementType(event.target.value)}>
+                    {movements.map( movement => <option key={movement} value={movement}>{movement}</option>)}
+                </select> */}
                 <div className="movement-label">Sets:</div>
                 {sets.map( (set, index) => 
                     <div className='set-field' key={index}>
