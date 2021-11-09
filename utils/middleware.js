@@ -8,8 +8,8 @@ const MongoStore = require('connect-mongo')
 const cors = require("cors")
 
 /* Routers */
-const HomeRouter = require('../controllers/home')
-const UserRouter = require('../controllers/user')
+// const HomeRouter = require('../controllers/home')
+// const UserRouter = require('../controllers/user')
 // const LiftRouter = require('../controllers/lift')
 const MovementRouter = require('../controllers/movement')
 
@@ -30,9 +30,7 @@ const middleware = app => {
     app.use(express.static('public'))
 
     /* Setup CORS */
-    app.use(cors({
-        origin: 'http://localhost:3000'
-    }));
+    app.use(cors());
 
     /* Set view engine to ejs */
     app.set('view engine', 'ejs')
@@ -46,8 +44,8 @@ const middleware = app => {
     }))
 
     /* Add routers to app */
-    app.use('/', UserRouter)
-    app.use('/', HomeRouter)
+    // app.use('/', UserRouter)
+    // app.use('/', HomeRouter)
     // app.use('/lifts', LiftRouter)
     app.use('/movements', MovementRouter)
 }
